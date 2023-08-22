@@ -14,9 +14,9 @@ enum TradeFeatureViewModelNextState: Hashable {
 public final class TradeFeatureViewModel: ObservableObject {
     @Published var searchText: String = ""
     
-    @Published var topMovers: [CoinCapAsset] = []
-    @Published var mostTraded: [CoinCapAsset] = []
-    @Published var allCryptos: [CoinCapAsset] = []
+    @Published private(set) var topMovers: [CoinCapAsset] = []
+    @Published private(set) var mostTraded: [CoinCapAsset] = []
+    @Published private(set) var allCryptos: [CoinCapAsset] = []
     
     @Published var nextState: TradeFeatureViewModelNextState?
     @Published var isSearching: Bool = false
@@ -35,12 +35,54 @@ public final class TradeFeatureViewModel: ObservableObject {
         }
     }
     
+    private let socket = CoinDetailRepositoryImp(StarScreamWebSocket())
+    
     init() {
         self.cancellables = .init()
         fetchCoins()
     }
+}
+
+//Life Cycle
+extension TradeFeatureViewModel {
+    func onAppear() {
+        selectedCrypto = nil
+        nextState = nil
+        socket.connect()
+    }
     
-    private let socket = CoinDetailRepositoryImp(StarScreamWebSocket())
+    func onDisappear() {
+        socket.disconnect()
+    }
+}
+
+//Private methods
+extension TradeFeatureViewModel {
+    private func fetchCoins() {
+        guard let url = coinlistUrl else {return }
+        NetworkManager.shared.request(
+            url: url,
+            expecting: [CoinCapAsset].self
+        )
+        .receive(on: DispatchQueue.main)
+        .sink { comp in
+            switch comp {
+            case .finished:
+                print("finished")
+                
+            case let .failure(error):
+                print(error.localizedDescription)
+            }
+        } receiveValue: {[weak self] coins in
+            guard let self = self else { return }
+            self.topMovers = coins.sorted(by: {$0.priceChangePercentage24H > $1.priceChangePercentage24H})
+            self.mostTraded = coins.sorted(by: {$0.marketCapChangePercentage24H ?? 0 > $1.marketCapChangePercentage24H ?? 0})
+            self.allCryptos = coins
+            
+            self.setupWs()
+        }
+        .store(in: &cancellables)
+    }
     
     private func mapping(for cryptos: [CoinCapAsset], with data: Datum) -> [CoinCapAsset] {
         var cryptos = cryptos
@@ -73,41 +115,20 @@ public final class TradeFeatureViewModel: ObservableObject {
             })
             .store(in: &cancellables)
     }
-    
-    func onAppear() {
-        selectedCrypto = nil
-        nextState = nil
-        socket.connect()
+}
+
+// UrlConfigurable
+extension TradeFeatureViewModel: UrlConfigurable {
+    private var coinlistUrl: URL? {
+        url(
+            for: "https://api.coingecko.com/api/v3/coins/markets",
+            queryParams: [
+                "vs_currency":"inr",
+                "order":"market_cap_desc",
+                "per_page":"100",
+                "page": "1",
+                "sparkline":"true",
+                "price_change_percentage":"24h"
+            ])
     }
-    
-    func onDisappear() {
-        socket.disconnect()
-    }
-    
-    private func fetchCoins() {
-        NetworkManager.shared.request(
-            url: .init(string: "https://api.coingecko.com/api/v3/coins/markets?vs_currency=inr&order=market_cap_desc&per_page=100&page=1&sparkline=true&price_change_percentage=24h"),
-            expecting: [CoinCapAsset].self
-        )
-        .receive(on: DispatchQueue.main)
-        .sink { comp in
-            switch comp {
-            case .finished:
-                print("finished")
-            
-            case let .failure(error):
-                print(error.localizedDescription)
-            }
-        } receiveValue: {[weak self] coins in
-            guard let self = self else { return }
-            self.topMovers = coins.sorted(by: {$0.priceChangePercentage24H > $1.priceChangePercentage24H})
-            self.mostTraded = coins.sorted(by: {$0.marketCapChangePercentage24H ?? 0 > $1.marketCapChangePercentage24H ?? 0})
-            self.allCryptos = coins
-            
-            self.setupWs()
-        }
-        .store(in: &cancellables)
-        
-    }
-    
 }

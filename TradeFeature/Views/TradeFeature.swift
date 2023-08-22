@@ -92,7 +92,10 @@ public struct TradeFeatureView: View {
                 .frame(height: 1)
         }
     }
-    
+}
+
+// SubViews
+extension TradeFeatureView {
     private var topMoversList: some View {
         // top movers
         Section {
@@ -137,7 +140,6 @@ public struct TradeFeatureView: View {
             )
         }
     }
-    
 }
 
 struct SectionHeaderView: View {
