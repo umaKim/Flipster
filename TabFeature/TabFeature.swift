@@ -4,9 +4,9 @@
 //
 //  Created by 김윤석 on 2023/08/02.
 //
+import Service
 import TradeFeature
 import AssetFeature
-import ComposableArchitecture
 import SwiftUI
 
 enum Tab: String, Equatable {
@@ -24,11 +24,17 @@ enum Tab: String, Equatable {
     }
 }
 
-struct TabFeatureView: View {
-    var body: some View {
+public struct TabFeatureView: View {
+    public init() { }
+    
+    public var body: some View {
         TabView {
-            NavigationStack{
-                TradeFeatureView(vm: TradeFeatureViewModel())
+            NavigationStack {
+//                TradeFeatureView(vm: TradeFeatureViewModel())
+                TradeFeatureView(vm: .init(
+                    socketService: CoinDetailRepositoryImp(StarScreamWebSocket()),
+                    restApiService: NetworkManager()
+                ))
             }
             .tabItem { Tab.trade.label }
 
