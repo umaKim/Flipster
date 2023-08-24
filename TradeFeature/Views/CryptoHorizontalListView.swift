@@ -4,7 +4,8 @@
 //
 //  Created by 김윤석 on 2023/08/20.
 //
-
+import Models
+import Kingfisher
 import SwiftUI
 
 public struct CryptoHorizontalListView: View {
@@ -44,7 +45,7 @@ public struct CryptoHorizontalListView: View {
                         Text(element.symbol.uppercased())
                                   .bold()
                             .foregroundColor(.white)
-                        Text("\(element.currentPrice.toPercentDecimal ?? "0")")
+                        Text("\(element.currentPrice.decimalDigits(2) ?? "0")")
                             .font(.system(size: 12))
                             .foregroundColor(.gray)
                     }
@@ -56,7 +57,7 @@ public struct CryptoHorizontalListView: View {
                         .frame(width: 15, height: 15)
                         .foregroundColor(Color(uiColor: (element.priceChangePercentage24H > 0) ? .green : .red))
                     
-                    Text("\(element.priceChangePercentage24H.toPercentDecimal ?? "0") %")
+                    Text("\(element.priceChangePercentage24H.decimalDigits(2) ?? "0") %")
                         .font(.title3)
                         .foregroundColor(Color(uiColor: (element.priceChangePercentage24H > 0) ? .green : .red))
                 }
