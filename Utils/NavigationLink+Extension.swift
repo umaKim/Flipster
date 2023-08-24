@@ -6,8 +6,8 @@
 //
 import SwiftUI
 
-public extension NavigationLink where Label == EmptyView {
-    init<T: Hashable>(destination: Destination, when selection: Binding<T?>, equals tag: T) {
+extension NavigationLink where Label == EmptyView {
+    public init<T: Hashable>(destination: Destination, when selection: Binding<T?>, equals tag: T) {
         self.init(
             tag: tag,
             selection: selection,

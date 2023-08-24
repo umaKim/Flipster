@@ -4,10 +4,12 @@
 //
 //  Created by 김윤석 on 2023/08/15.
 //
+import Models
+import Service
 import Combine
 import Foundation
 
-enum TradeFeatureViewModelNextState: Hashable {
+public enum TradeFeatureViewModelNextState: Hashable {
     case detailView
 }
 
@@ -18,14 +20,14 @@ public final class TradeFeatureViewModel: ObservableObject {
     @Published private(set) var mostTraded: [CoinCapAsset] = []
     @Published private(set) var allCryptos: [CoinCapAsset] = []
     
-    @Published var nextState: TradeFeatureViewModelNextState?
+    @Published public var nextState: TradeFeatureViewModelNextState?
     @Published var isSearching: Bool = false
     
     private var cancellables: Set<AnyCancellable>
     
-    var selectedCrypto: CoinCapAsset?
+    public var selectedCrypto: CoinCapAsset?
     
-    var filteredCryptos: [CoinCapAsset] {
+    public var filteredCryptos: [CoinCapAsset] {
         get {
             let lowercasedQuery = searchText.uppercased()
             return allCryptos.filter({
@@ -35,9 +37,12 @@ public final class TradeFeatureViewModel: ObservableObject {
         }
     }
     
-    private let socket = CoinDetailRepositoryImp(StarScreamWebSocket())
+    private let socketService: any CoinDetailRepository
+    private let restApiService: NetworkManager
     
-    init() {
+    public init(socketService: any CoinDetailRepository, restApiService: NetworkManager) {
+        self.socketService = socketService
+        self.restApiService = restApiService
         self.cancellables = .init()
         fetchCoins()
     }
@@ -48,40 +53,32 @@ extension TradeFeatureViewModel {
     func onAppear() {
         selectedCrypto = nil
         nextState = nil
-        socket.connect()
+        socketService.connect(to: FinnHubSocket())
     }
     
     func onDisappear() {
-        socket.disconnect()
+        socketService.disconnect()
+        
     }
 }
 
 //Private methods
 extension TradeFeatureViewModel {
     private func fetchCoins() {
-        guard let url = coinlistUrl else {return }
-        NetworkManager.shared.request(
-            url: url,
-            expecting: [CoinCapAsset].self
-        )
-        .receive(on: DispatchQueue.main)
-        .sink { comp in
-            switch comp {
-            case .finished:
-                print("finished")
+        guard let url = coinlistUrl else { return }
+        Task { @MainActor in
+            let result = await restApiService.request(url: url, expecting: [CoinCapAsset].self)
+            switch result {
+            case .success(let coins):
+                self.topMovers = coins.sorted(by: {$0.priceChangePercentage24H > $1.priceChangePercentage24H})
+                self.mostTraded = coins.sorted(by: {$0.marketCapChangePercentage24H ?? 0 > $1.marketCapChangePercentage24H ?? 0})
+                self.allCryptos = coins
                 
-            case let .failure(error):
+                self.setupWs()
+            case .failure(let error):
                 print(error.localizedDescription)
             }
-        } receiveValue: {[weak self] coins in
-            guard let self = self else { return }
-            self.topMovers = coins.sorted(by: {$0.priceChangePercentage24H > $1.priceChangePercentage24H})
-            self.mostTraded = coins.sorted(by: {$0.marketCapChangePercentage24H ?? 0 > $1.marketCapChangePercentage24H ?? 0})
-            self.allCryptos = coins
-            
-            self.setupWs()
         }
-        .store(in: &cancellables)
     }
     
     private func mapping(for cryptos: [CoinCapAsset], with data: Datum) -> [CoinCapAsset] {
@@ -100,11 +97,11 @@ extension TradeFeatureViewModel {
     }
     
     private func setupWs() {
-        socket.connect()
-        socket.set(symbols: allCryptos.map({$0.symbol.uppercased()}))
-        socket.dataPublisher
+        socketService.connect(to: FinnHubSocket())
+        socketService.set(symbols: allCryptos.map({$0.symbol.uppercased()}))
+        socketService.dataPublisher
             .receive(on: DispatchQueue.main)
-            .sink(receiveValue: { receivedDatum in
+            .sink(receiveValue: { (receivedDatum: Datum) in
                 receivedDatum
                     .forEach {[weak self] data in
                         guard let self = self else { return }
