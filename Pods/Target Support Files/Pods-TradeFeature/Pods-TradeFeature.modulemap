@@ -1,0 +1,6 @@
+framework module Pods_TradeFeature {
+  umbrella header "Pods-TradeFeature-umbrella.h"
+
+  export *
+  module * { export * }
+}

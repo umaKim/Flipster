@@ -1,0 +1,6 @@
+framework module Pods_TradeFeature_TradeFeatureTests {
+  umbrella header "Pods-TradeFeature-TradeFeatureTests-umbrella.h"
+
+  export *
+  module * { export * }
+}
