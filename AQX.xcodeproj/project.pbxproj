@@ -1957,8 +1957,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7A87BD832AA24EA20040020B /* BarButton.swift in Sources */,
 				7A667FA62A96574F00873922 /* LightweightCharts.framework in Sources */,
+				7A87BD832AA24EA20040020B /* BarButton.swift in Sources */,
 				7A667F2D2A963A8A00873922 /* KeypadView.swift in Sources */,
 				7A667F2C2A963A8700873922 /* AQXTradingDetailView.swift in Sources */,
 				7A667F2E2A963AA800873922 /* AQXTradingDetailViewModel.swift in Sources */,

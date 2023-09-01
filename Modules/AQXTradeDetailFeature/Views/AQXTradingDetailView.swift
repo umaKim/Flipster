@@ -140,47 +140,21 @@ extension AQXTradingDetailView {
     private var leverageTypeBarView: some View {
         //long or short tab Bar
         HStack(spacing: 0) {
-            Button {
-                viewModel.tradingType = .long
-            } label: {
-                VStack(spacing: 6) {
-                    HStack {
-                        Text("Long")
-                            .bold()
-                        
-                        Image(systemName: "chart.line.uptrend.xyaxis")
-                            .resizable()
-                            .frame(width: 20, height: 20)
-                    }
-                    
-                    Rectangle()
-                        .background(.green)
-                        .frame(height: 3)
+            BarButton(
+                text: "Long",
+                imageName: "chart.line.uptrend.xyaxis",
+                onTap: {
+                    viewModel.tradingType = .long
                 }
-                .frame(width: UIScreen.main.bounds.width/2)
-            }
-            .foregroundColor(viewModel.tradingType == .long ? Color.green : Color.gray)
+            ).foregroundColor(viewModel.tradingType == .long ? Color.green : Color.gray)
             
-            Button {
-                viewModel.tradingType = .short
-            } label: {
-                VStack(spacing: 6) {
-                    
-                    HStack(alignment: .center) {
-                        Text("Short")
-                            .bold()
-                        Image(systemName: "chart.line.downtrend.xyaxis")
-                            .resizable()
-                            .frame(width: 20, height: 20)
-                    }
-                    
-                    Rectangle()
-                        .background(.red)
-                        .frame(height: 3)
+            BarButton(
+                text: "Short",
+                imageName: "chart.line.downtrend.xyaxis",
+                onTap: {
+                    viewModel.tradingType = .short
                 }
-                .frame(width: UIScreen.main.bounds.width/2)
-            }
-            .foregroundColor(viewModel.tradingType == .short ? Color.red : Color.gray)
+            ).foregroundColor(viewModel.tradingType == .short ? Color.red : Color.gray)
         }
         .padding(.top)
         .animation(.default, value: viewModel.chartViewStatus)
