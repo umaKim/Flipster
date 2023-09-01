@@ -29,7 +29,12 @@ class AQXTradingDetailViewModelTests: XCTestCase {
         viewModel = nil
     }
     
-    func testFetchChartData() {
+    func test_reviewYourOrderButtonDisable() {
+        viewModel.priceInput = ""
+        XCTAssertTrue(viewModel.reviewYourOrderButtonDisabled)
+    }
+    
+    func test_FetchChartData() {
         let expectation = expectation(description: "Fetch chart data")
 
         viewModel.fetchChartData()
