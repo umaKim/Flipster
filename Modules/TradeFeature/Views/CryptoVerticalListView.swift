@@ -9,8 +9,8 @@ import Models
 import SwiftUI
 
 struct CryptoVerticalListView: View {
-    @ObservedObject var viewModel: CryptoListViewModel
-    var onTap: (CoinCapAsset) -> Void
+    @ObservedObject private var viewModel: CryptoListViewModel
+    private var onTap: (CoinCapAsset) -> Void
     
     var body: some View {
         LazyVStack {
