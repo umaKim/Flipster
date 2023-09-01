@@ -12,6 +12,14 @@ struct CryptoVerticalListView: View {
     @ObservedObject private var viewModel: CryptoListViewModel
     private var onTap: (CoinCapAsset) -> Void
     
+    public init(
+        _ viewModel: CryptoListViewModel,
+        onTap: @escaping (CoinCapAsset) -> Void
+    ) {
+        self.viewModel = viewModel
+        self.onTap = onTap
+    }
+    
     var body: some View {
         LazyVStack {
             ForEach(
