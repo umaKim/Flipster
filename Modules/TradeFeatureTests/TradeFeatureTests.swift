@@ -64,7 +64,7 @@ final class TradeFeatureTests: XCTestCase {
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             self.vm.viewStatus = .searching
             self.vm.searchText = "b"
-            XCTAssertEqual(self.vm.mostTraded, [MockData.crypto])
+            XCTAssertEqual(self.vm.filteredCryptos, [MockData.crypto])
             expectation.fulfill()
         }
         waitForExpectations(timeout: 5, handler: nil)
