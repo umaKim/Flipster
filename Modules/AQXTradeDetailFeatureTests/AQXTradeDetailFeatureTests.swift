@@ -15,7 +15,6 @@ class AQXTradingDetailViewModelTests: XCTestCase {
     var viewModel: AQXTradingDetailViewModel!
     
     override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
         viewModel = AQXTradingDetailViewModel(
             crypto: MockData.crypto,
             repository: MockAQXTradingDetailRepositoryImp(
@@ -25,7 +24,6 @@ class AQXTradingDetailViewModelTests: XCTestCase {
     }
 
     override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
         viewModel = nil
     }
     
@@ -36,9 +34,7 @@ class AQXTradingDetailViewModelTests: XCTestCase {
     
     func test_FetchChartData() {
         let expectation = expectation(description: "Fetch chart data")
-
         viewModel.fetchChartData()
-
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             XCTAssertNotNil(self.viewModel.chartData)
             expectation.fulfill()
@@ -48,8 +44,6 @@ class AQXTradingDetailViewModelTests: XCTestCase {
 
     func testOnDisappear() {
         viewModel.onDisappear()
-
-        // Assert that the chartData is nil after calling onDisappear
         XCTAssertNil(viewModel.chartData)
     }
 }
