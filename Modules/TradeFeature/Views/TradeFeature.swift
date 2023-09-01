@@ -4,19 +4,13 @@
 //
 //  Created by 김윤석 on 2023/08/02.
 //
+
 import Models
 import AQXTradeDetailFeature
 import Service
 import Kingfisher
 import SwiftUI
 import Utils
-
-// user Interaction ->
-// View -> [ action -> reducer -> state ] -> View
-
-//Store: action -> reducer -> Environment -> Effect -> action
-//                         -> State
-
 
 enum TradeViewStatus {
     case searching
@@ -31,7 +25,6 @@ public struct TradeFeatureView: View {
     }
    
     public var body: some View {
-        
             VStack {
                 SearchBar(text: $viewModel.searchText, status: $viewModel.viewStatus)
                 ZStack {
@@ -39,7 +32,7 @@ public struct TradeFeatureView: View {
                     case .searching:
                         ScrollView {
                             CryptoListView(
-                                viewModel: .init(cryptos: viewModel.filteredCryptos),
+                                .init(cryptos: viewModel.filteredCryptos),
                                 axis: .vertical,
                                 headerView: {
                                     usdtPerpetualHeaderTitleView
@@ -55,7 +48,7 @@ public struct TradeFeatureView: View {
                             usdtPerpetualHeaderTitleView
                             
                             CryptoListView(
-                                viewModel: .init(cryptos: viewModel.topMovers),
+                                .init(cryptos: viewModel.topMovers),
                                 axis: .horizontal,
                                 headerView: {
                                     SectionHeaderView(sectionHeader: TopMoversHeaderInfo())
@@ -67,7 +60,7 @@ public struct TradeFeatureView: View {
                             ).padding(.bottom)
                             
                             CryptoListView(
-                                viewModel: .init(cryptos: viewModel.mostTraded),
+                                .init(cryptos: viewModel.mostTraded),
                                 axis: .horizontal,
                                 headerView: {
                                     SectionHeaderView(sectionHeader: MostTradedHeaderInfo())
@@ -79,7 +72,7 @@ public struct TradeFeatureView: View {
                             ).padding(.bottom)
                             
                             CryptoListView(
-                                viewModel: .init(cryptos: viewModel.filteredCryptos),
+                                .init(cryptos: viewModel.filteredCryptos),
                                 axis: .vertical,
                                 headerView: {
                                     SectionHeaderView(sectionHeader: AllSelectionHeaderInfo())

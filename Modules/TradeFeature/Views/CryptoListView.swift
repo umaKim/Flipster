@@ -29,6 +29,7 @@ struct CryptoListView<HeaderContent: View>: View {
     private let onTap: (CoinCapAsset) -> Void
     
     public init(
+        _ viewModel: CryptoListViewModel,
         axis: Axis,
         @ViewBuilder headerView: @escaping () -> HeaderContent,
         onTap: @escaping (CoinCapAsset) -> Void
@@ -44,11 +45,11 @@ struct CryptoListView<HeaderContent: View>: View {
         Section {
             switch axis {
             case .horizontal:
-                CryptoHorizontalListView(viewModel: viewModel) { element in
+                CryptoHorizontalListView(viewModel) { element in
                     onTap(element)
                 }
             case .vertical:
-                CryptoVerticalListView(viewModel: viewModel) { element in
+                CryptoVerticalListView(viewModel) { element in
                     onTap(element)
                 }
             }

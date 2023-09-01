@@ -13,7 +13,7 @@ public struct CryptoHorizontalListView: View {
     private var onTap: (CoinCapAsset) -> Void
     
     public init(
-        viewModel: CryptoListViewModel,
+        _ viewModel: CryptoListViewModel,
         onTap: @escaping (CoinCapAsset) -> Void
     ) {
         self.viewModel = viewModel
