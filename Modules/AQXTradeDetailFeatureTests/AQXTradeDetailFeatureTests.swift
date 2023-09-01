@@ -42,7 +42,7 @@ class AQXTradingDetailViewModelTests: XCTestCase {
         waitForExpectations(timeout: 5, handler: nil)
     }
 
-    func testOnDisappear() {
+    func test_OnDisappear() {
         viewModel.onDisappear()
         XCTAssertNil(viewModel.chartData)
     }
