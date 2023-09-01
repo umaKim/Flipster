@@ -18,91 +18,91 @@ import Utils
 //                         -> State
 
 public struct TradeFeatureView: View {
-    @ObservedObject public var vm: TradeFeatureViewModel
+    @ObservedObject public var viewModel: TradeFeatureViewModel
     
-    public init(vm: TradeFeatureViewModel) {
-        self.vm = vm
+    public init(_ viewModel: TradeFeatureViewModel) {
+        self.viewModel = viewModel
     }
-    
+   
     public var body: some View {
-        VStack {
-            SearchBar(text: $vm.searchText, isEditing: $vm.isSearching)
-            ZStack {
-                if vm.isSearching {
-                    ScrollView {
-                        CryptoListView(
-                            vm: .init(cryptos: vm.filteredCryptos),
-                            axis: .vertical,
-                            headerView: {
-                                usdtPerpetualHeaderTitleView
-                            },
-                            onTap: {
-                                vm.nextState = .detailView
-                                vm.selectedCrypto = $0
-                            }
-                        )
+        
+            VStack {
+                SearchBar(text: $viewModel.searchText, status: $viewModel.viewStatus)
+                ZStack {
+                    switch viewModel.viewStatus {
+                    case .searching:
+                        ScrollView {
+                            CryptoListView(
+                                viewModel: .init(cryptos: viewModel.filteredCryptos),
+                                axis: .vertical,
+                                headerView: {
+                                    usdtPerpetualHeaderTitleView
+                                },
+                                onTap: {
+                                    viewModel.nextState = .detailView
+                                    viewModel.selectedCrypto = $0
+                                }
+                            )
+                        }
+                    case .normal:
+                        ScrollView(.vertical, showsIndicators: false) {
+                            usdtPerpetualHeaderTitleView
+                            
+                            CryptoListView(
+                                viewModel: .init(cryptos: viewModel.topMovers),
+                                axis: .horizontal,
+                                headerView: {
+                                    SectionHeaderView(sectionHeader: TopMoversHeaderInfo())
+                                },
+                                onTap: {
+                                    viewModel.nextState = .detailView
+                                    viewModel.selectedCrypto = $0
+                                }
+                            ).padding(.bottom)
+                            
+                            CryptoListView(
+                                viewModel: .init(cryptos: viewModel.mostTraded),
+                                axis: .horizontal,
+                                headerView: {
+                                    SectionHeaderView(sectionHeader: MostTradedHeaderInfo())
+                                },
+                                onTap: {
+                                    viewModel.nextState = .detailView
+                                    viewModel.selectedCrypto = $0
+                                }
+                            ).padding(.bottom)
+                            
+                            CryptoListView(
+                                viewModel: .init(cryptos: viewModel.filteredCryptos),
+                                axis: .vertical,
+                                headerView: {
+                                    SectionHeaderView(sectionHeader: AllSelectionHeaderInfo())
+                                },
+                                onTap: {
+                                    viewModel.nextState = .detailView
+                                    viewModel.selectedCrypto = $0
+                                }
+                            )
+                        }
+                        .listStyle(.insetGrouped)
                     }
-                } else {
-                    ScrollView(.vertical, showsIndicators: false) {
-                        usdtPerpetualHeaderTitleView
-                        
-                        CryptoListView(
-                            vm: .init(cryptos: vm.topMovers),
-                            axis: .horizontal,
-                            headerView: {
-                                SectionHeaderView(sectionHeader: TopMoversHeaderInfo())
-                            },
-                            onTap: {
-                                vm.nextState = .detailView
-                                vm.selectedCrypto = $0
-                            }
-                        ).padding(.bottom)
-                        
-                        CryptoListView(
-                            vm: .init(cryptos: vm.mostTraded),
-                            axis: .horizontal,
-                            headerView: {
-                                SectionHeaderView(sectionHeader: MostTradedHeaderInfo())
-                            },
-                            onTap: {
-                                vm.nextState = .detailView
-                                vm.selectedCrypto = $0
-                            }
-                        ).padding(.bottom)
-                        
-                        CryptoListView(
-                            vm: .init(cryptos: vm.filteredCryptos),
-                            axis: .vertical,
-                            headerView: {
-                                SectionHeaderView(sectionHeader: AllSelectionHeaderInfo())
-                            },
-                            onTap: {
-                                vm.nextState = .detailView
-                                vm.selectedCrypto = $0
-                            }
-                        )
-                    }
-                    .listStyle(.insetGrouped)
                 }
             }
-        }
-        .padding([.horizontal, .bottom])
-        .background(Color(uiColor: .flipsterBlack))
-        .onAppear {
-            vm.onAppear()
-        }
-        .onDisappear {
-            vm.onDisappear()
-        }
-        
+            .padding([.horizontal, .bottom])
+            .background(Color(uiColor: .flipsterBlack))
+            .onAppear(perform: viewModel.onAppear)
+            .onDisappear(perform: viewModel.onDisappear)
+       
         NavigationLink(
             destination: AQXTradingDetailView(
-                vm: .init(
-                    crypto: vm.selectedCrypto,
-                    service: NetworkManager()
+                .init(
+                    crypto: viewModel.selectedCrypto,
+                    repository: AQXTradingDetailRepositoryImp(
+                        networkManager: RESTApiManager()
+                    )
                 )
             ),
-            when: $vm.nextState,
+            when: $viewModel.nextState,
             equals: .detailView
         )
     }
