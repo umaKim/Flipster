@@ -17,6 +17,12 @@ import Utils
 //Store: action -> reducer -> Environment -> Effect -> action
 //                         -> State
 
+
+enum TradeViewStatus {
+    case searching
+    case normal
+}
+
 public struct TradeFeatureView: View {
     @ObservedObject public var viewModel: TradeFeatureViewModel
     

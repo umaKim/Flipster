@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SearchBar: View {
     @Binding var text: String
-    @Binding var isEditing: Bool
+    @Binding var status: TradeViewStatus
     
     @FocusState var isFocused: Bool
     
@@ -25,8 +25,10 @@ struct SearchBar: View {
                         text: $text,
                         onEditingChanged: { isEditing in
                             withAnimation {
-                                self.isEditing = isEditing
-                                self.isFocused = isEditing
+                                if isEditing {
+                                    self.status = .searching
+                                    self.isFocused = isEditing
+                                }
                             }
                         }
                     )
@@ -45,11 +47,12 @@ struct SearchBar: View {
                     .frame(height: 50)
             )
             
-            if isEditing {
+            switch status {
+            case .searching:
                 Button {
                     withAnimation {
                         self.text = ""
-                        self.isEditing = false
+                        self.status = .normal
                         self.isFocused = false
                     }
                 } label: {
@@ -57,6 +60,9 @@ struct SearchBar: View {
                         .foregroundColor(.white)
                 }
                 .transition(.opacity)
+                
+            case .normal:
+                EmptyView()
             }
         }
     }
