@@ -9,7 +9,7 @@ import TradeFeature
 import AssetFeature
 import SwiftUI
 
-enum Tab: String, Equatable {
+private enum Tab: String, Equatable {
     case trade
     case asset
     

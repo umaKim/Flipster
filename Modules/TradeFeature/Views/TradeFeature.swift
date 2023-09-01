@@ -24,7 +24,7 @@ enum TradeViewStatus {
 }
 
 public struct TradeFeatureView: View {
-    @ObservedObject public var viewModel: TradeFeatureViewModel
+    @ObservedObject private var viewModel: TradeFeatureViewModel
     
     public init(_ viewModel: TradeFeatureViewModel) {
         self.viewModel = viewModel

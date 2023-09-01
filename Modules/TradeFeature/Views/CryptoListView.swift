@@ -23,13 +23,12 @@ struct CryptoListView<HeaderContent: View>: View {
         case vertical
     }
     
-    @ObservedObject var viewModel: CryptoListViewModel
-    let axis: Axis
-    let headerView: () -> HeaderContent
-    let onTap: (CoinCapAsset) -> Void
+    @ObservedObject private var viewModel: CryptoListViewModel
+    private let axis: Axis
+    private let headerView: () -> HeaderContent
+    private let onTap: (CoinCapAsset) -> Void
     
-    init(
-        viewModel: CryptoListViewModel,
+    public init(
         axis: Axis,
         @ViewBuilder headerView: @escaping () -> HeaderContent,
         onTap: @escaping (CoinCapAsset) -> Void

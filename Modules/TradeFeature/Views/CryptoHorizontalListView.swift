@@ -9,8 +9,8 @@ import Kingfisher
 import SwiftUI
 
 public struct CryptoHorizontalListView: View {
-    @ObservedObject var viewModel: CryptoListViewModel
-    var onTap: (CoinCapAsset) -> Void
+    @ObservedObject private var viewModel: CryptoListViewModel
+    private var onTap: (CoinCapAsset) -> Void
     
     public init(
         viewModel: CryptoListViewModel,

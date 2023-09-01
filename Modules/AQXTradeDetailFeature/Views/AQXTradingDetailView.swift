@@ -33,8 +33,7 @@ public enum LeverageType: Int, Identifiable {
 
 public struct AQXTradingDetailView: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
-    
-    @ObservedObject public var viewModel: AQXTradingDetailViewModel
+    @ObservedObject private var viewModel: AQXTradingDetailViewModel
     
     public init(_ viewModel: AQXTradingDetailViewModel) {
         self.viewModel = viewModel

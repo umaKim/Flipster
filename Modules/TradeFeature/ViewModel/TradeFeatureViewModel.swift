@@ -17,9 +17,8 @@ public final class TradeFeatureViewModel: ObservableObject {
     @Published var nextState: TradeFeatureViewModelNextState?
     @Published var viewStatus: TradeViewStatus = .normal
     @Published var searchText: String = ""
-    @Published var topMovers: [CoinCapAsset] = []
+    @Published private(set) var topMovers: [CoinCapAsset] = []
     @Published private(set) var mostTraded: [CoinCapAsset] = []
-    
     var filteredCryptos: [CoinCapAsset] {
         get {
             if viewStatus == .searching {
