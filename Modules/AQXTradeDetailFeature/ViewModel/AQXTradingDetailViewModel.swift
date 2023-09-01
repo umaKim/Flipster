@@ -9,25 +9,11 @@ import Service
 import Combine
 import Foundation
 
-public protocol AQXTradingDetailViewModelProtocol: ObservableObject {
-    var crypto: CoinCapAsset? { get }
-    var chartData: ChartData? { get }
-    var priceInput: String { get set }
-    var chartViewStatus: AQXTradingDetailChartStatus { get set }
-    var tradingType: AQXTradingDetailViewTradingType { get set }
-    var selectedLeverageType: LeverageType { get set }
-    var reviewYourOrderButtonDisabled: Bool { get }
+public final class AQXTradingDetailViewModel: ObservableObject {
     
-    func fetchChartData()
-    func onDisappear()
-}
-
-public final class AQXTradingDetailViewModel: AQXTradingDetailViewModelProtocol {
     public var crypto: CoinCapAsset?
-    
     @Published public var chartData: ChartData?
     @Published public var priceInput: String = ""
-    
     @Published public var chartViewStatus: AQXTradingDetailChartStatus = .show
     @Published public var tradingType: AQXTradingDetailViewTradingType = .long
     @Published public var selectedLeverageType: LeverageType = .none
