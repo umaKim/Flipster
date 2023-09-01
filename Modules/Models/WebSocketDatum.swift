@@ -28,7 +28,10 @@ public struct WebSocketDatum : Codable, Hashable, Equatable {
         case symbol = "s"
     }
     
-    public init(price: Double, symbol: String) {
+    public init(
+        price: Double,
+        symbol: String
+    ) {
         self.price = price
         self.symbol = symbol
     }

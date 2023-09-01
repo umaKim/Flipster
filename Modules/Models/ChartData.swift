@@ -24,7 +24,14 @@ public struct ChartData: Codable {
         case volume = "v"
     }
     
-    public init(closePrice: [Double], highPrice: [Double], lowPrice: [Double], openPrice: [Double], time: [Double], volume: [Double]) {
+    public init(
+        closePrice: [Double],
+        highPrice: [Double],
+        lowPrice: [Double],
+        openPrice: [Double],
+        time: [Double],
+        volume: [Double]
+    ) {
         self.closePrice = closePrice
         self.highPrice = highPrice
         self.lowPrice = lowPrice
