@@ -125,6 +125,7 @@ extension TradeFeatureViewModel: UrlConfigurable {
                 "page": "1",
                 "sparkline":"true",
                 "price_change_percentage":"24h"
-            ])
+            ]
+        )
     }
 }
