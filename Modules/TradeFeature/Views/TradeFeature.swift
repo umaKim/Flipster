@@ -25,68 +25,7 @@ public struct TradeFeatureView: View {
     }
    
     public var body: some View {
-            VStack {
-                SearchBar(text: $viewModel.searchText, status: $viewModel.viewStatus)
-                ZStack {
-                    switch viewModel.viewStatus {
-                    case .searching:
-                        ScrollView {
-                            CryptoListView(
-                                .init(cryptos: viewModel.filteredCryptos),
-                                axis: .vertical,
-                                headerView: {
-                                    usdtPerpetualHeaderTitleView
-                                },
-                                onTap: {
-                                    viewModel.nextState = .detailView
-                                    viewModel.selectedCrypto = $0
-                                }
-                            )
-                        }
-                    case .normal:
-                        ScrollView(.vertical, showsIndicators: false) {
-                            usdtPerpetualHeaderTitleView
-                            
-                            CryptoListView(
-                                .init(cryptos: viewModel.topMovers),
-                                axis: .horizontal,
-                                headerView: {
-                                    SectionHeaderView(sectionHeader: TopMoversHeaderInfo())
-                                },
-                                onTap: {
-                                    viewModel.nextState = .detailView
-                                    viewModel.selectedCrypto = $0
-                                }
-                            ).padding(.bottom)
-                            
-                            CryptoListView(
-                                .init(cryptos: viewModel.mostTraded),
-                                axis: .horizontal,
-                                headerView: {
-                                    SectionHeaderView(sectionHeader: MostTradedHeaderInfo())
-                                },
-                                onTap: {
-                                    viewModel.nextState = .detailView
-                                    viewModel.selectedCrypto = $0
-                                }
-                            ).padding(.bottom)
-                            
-                            CryptoListView(
-                                .init(cryptos: viewModel.filteredCryptos),
-                                axis: .vertical,
-                                headerView: {
-                                    SectionHeaderView(sectionHeader: AllSelectionHeaderInfo())
-                                },
-                                onTap: {
-                                    viewModel.nextState = .detailView
-                                    viewModel.selectedCrypto = $0
-                                }
-                            )
-                        }
-                        .listStyle(.insetGrouped)
-                    }
-                }
-            }
+        contentView
             .padding([.horizontal, .bottom])
             .background(Color(uiColor: .flipsterBlack))
             .onAppear(perform: viewModel.onAppear)
@@ -104,6 +43,71 @@ public struct TradeFeatureView: View {
             when: $viewModel.nextState,
             equals: .detailView
         )
+    }
+    
+    private var contentView: some View {
+        VStack {
+            SearchBar(text: $viewModel.searchText, status: $viewModel.viewStatus)
+            ZStack {
+                switch viewModel.viewStatus {
+                case .searching:
+                    ScrollView {
+                        CryptoListView(
+                            .init(cryptos: viewModel.filteredCryptos),
+                            axis: .vertical,
+                            headerView: {
+                                usdtPerpetualHeaderTitleView
+                            },
+                            onTap: {
+                                viewModel.nextState = .detailView
+                                viewModel.selectedCrypto = $0
+                            }
+                        )
+                    }
+                case .normal:
+                    ScrollView(.vertical, showsIndicators: false) {
+                        usdtPerpetualHeaderTitleView
+                        
+                        CryptoListView(
+                            .init(cryptos: viewModel.topMovers),
+                            axis: .horizontal,
+                            headerView: {
+                                SectionHeaderView(sectionHeader: TopMoversHeaderInfo())
+                            },
+                            onTap: {
+                                viewModel.nextState = .detailView
+                                viewModel.selectedCrypto = $0
+                            }
+                        ).padding(.bottom)
+                        
+                        CryptoListView(
+                            .init(cryptos: viewModel.mostTraded),
+                            axis: .horizontal,
+                            headerView: {
+                                SectionHeaderView(sectionHeader: MostTradedHeaderInfo())
+                            },
+                            onTap: {
+                                viewModel.nextState = .detailView
+                                viewModel.selectedCrypto = $0
+                            }
+                        ).padding(.bottom)
+                        
+                        CryptoListView(
+                            .init(cryptos: viewModel.filteredCryptos),
+                            axis: .vertical,
+                            headerView: {
+                                SectionHeaderView(sectionHeader: AllSelectionHeaderInfo())
+                            },
+                            onTap: {
+                                viewModel.nextState = .detailView
+                                viewModel.selectedCrypto = $0
+                            }
+                        )
+                    }
+                    .listStyle(.insetGrouped)
+                }
+            }
+        }
     }
     
     private var usdtPerpetualHeaderTitleView: some View {
@@ -124,4 +128,3 @@ public struct TradeFeatureView: View {
         }
     }
 }
-
