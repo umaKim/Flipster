@@ -1,12 +1,6 @@
 # AQX
 SwifUI based project cloning Flipster powered by Presto Labs
 
-## 📖 Details
-
-### **Repository**
-
-https://github.com/umaKim/Flipster
-
 ## **🛠️ Used Technologies and Libraries**
 
 - SwiftUI
