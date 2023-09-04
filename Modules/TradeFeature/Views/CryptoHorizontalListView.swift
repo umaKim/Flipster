@@ -4,8 +4,8 @@
 //
 //  Created by 김윤석 on 2023/08/20.
 //
+import SwiftUIImageCachKit
 import Models
-import Kingfisher
 import SwiftUI
 
 public struct CryptoHorizontalListView: View {
@@ -36,13 +36,21 @@ public struct CryptoHorizontalListView: View {
         } label: {
             VStack(alignment: .center, spacing: 8) {
                 HStack(alignment: .center) {
-                    KFImage(.init(string: element.image))
-                        .placeholder({ progress in
-                            Image(systemName: "person.circle")
-                        })
-                        .resizable()
-                        .frame(width: 40, height: 40)
-                        .cornerRadius(20)
+                    CacheImage(
+                        urlString: element.image,
+                        content: { phase in
+                            switch phase {
+                            case .success(let image):
+                                image
+                                    .resizable()
+                                    .frame(width: 40, height: 40)
+                                    .cornerRadius(20)
+                                
+                            default:
+                                Image(systemName: "exclamationmark.circle")
+                            }
+                        }
+                    )
                     
                     VStack(alignment: .leading) {
                         Text(element.symbol.uppercased())

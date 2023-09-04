@@ -4,7 +4,8 @@
 //
 //  Created by 김윤석 on 2023/08/24.
 //
-import Kingfisher
+
+import SwiftUIImageCachKit
 import Models
 import SwiftUI
 
@@ -38,14 +39,22 @@ struct CryptoVerticalListView: View {
     
     private func cell(with element: CoinCapAsset) -> some View {
         HStack {
-            KFImage(.init(string: element.image))
-                .placeholder({ progress in
-                    Image(systemName: "person.circle")
-                })
-                .resizable()
-                .frame(width: 30, height: 30)
-                .cornerRadius(15)
-
+            CacheImage(
+                urlString: element.image,
+                content: { phase in
+                    switch phase {
+                    case .success(let image):
+                        image
+                            .resizable()
+                            .frame(width: 30, height: 30)
+                            .cornerRadius(15)
+                    
+                    default:
+                        Image(systemName: "exclamationmark.circle")
+                    }
+                }
+            )
+           
             VStack(alignment: .leading) {
                 Text(element.symbol.uppercased())
                     .font(.headline)

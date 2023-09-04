@@ -4,7 +4,7 @@
 //
 //  Created by 김윤석 on 2023/08/01.
 //
-import Kingfisher
+import SwiftUIImageCachKit
 import SwiftUI
 import Combine
 import Starscream
@@ -72,13 +72,21 @@ extension AQXTradingDetailView {
             } label: {
                 HStack {
                     Image(systemName: "chevron.left")
-                    KFImage(.init(string: viewModel.crypto?.image ?? ""))
-                        .placeholder({ progress in
-                            Image(systemName: "person.circle")
-                        })
-                        .resizable()
-                        .frame(width: 15, height: 15)
-                        .cornerRadius(7.5)
+                    CacheImage(
+                        urlString: viewModel.crypto?.image ?? "",
+                        content: { phase in
+                            switch phase {
+                            case .success(let image):
+                                image
+                                    .resizable()
+                                    .frame(width: 15, height: 15)
+                                    .cornerRadius(7.5)
+                                
+                            default:
+                                Image(systemName: "exclamationmark.circle")
+                            }
+                        }
+                    )
                     
                     Text("\(viewModel.crypto?.symbol.uppercased() ?? "")")
                         .bold()

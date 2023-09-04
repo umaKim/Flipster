@@ -8,7 +8,6 @@
 import Models
 import AQXTradeDetailFeature
 import Service
-import Kingfisher
 import SwiftUI
 import Utils
 
