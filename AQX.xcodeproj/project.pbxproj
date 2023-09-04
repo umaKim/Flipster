@@ -909,8 +909,6 @@
 			children = (
 				7AE3D26F2A7900630041603F /* AQX */,
 				7AFD7F1C2A982A9A00E9B705 /* Modules */,
-				7A87BD8A2AA5F2CC0040020B /* SwiftUIImageCachKit */,
-				7A87BD982AA5F2CD0040020B /* SwiftUIImageCachKitTests */,
 				7AE3D26E2A7900630041603F /* Products */,
 				98B7586E6CC2DCF8D9BDE8D9 /* Pods */,
 				8FFD5CD962E836DE679EAEC6 /* Frameworks */,
@@ -964,6 +962,8 @@
 		7AFD7F1C2A982A9A00E9B705 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				7A87BD8A2AA5F2CC0040020B /* SwiftUIImageCachKit */,
+				7A87BD982AA5F2CD0040020B /* SwiftUIImageCachKitTests */,
 				7A667F632A96438600873922 /* TabFeature */,
 				7A667F712A96438700873922 /* TabFeatureTests */,
 				7ACF7A852A92397300A08D8F /* TradeFeature */,
