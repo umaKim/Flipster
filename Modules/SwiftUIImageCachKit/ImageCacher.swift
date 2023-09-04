@@ -8,7 +8,7 @@
 import SwiftUI
 
 public struct CacheImage<Content: View>: View{
-    private let url: URL
+    private let urlString: String
     private let scale: CGFloat
     private let transaction: Transaction
     private let content: (AsyncImagePhase) -> Content
@@ -19,7 +19,7 @@ public struct CacheImage<Content: View>: View{
         transaction: Transaction = Transaction(),
         @ViewBuilder content: @escaping (AsyncImagePhase) -> Content
     ){
-        self.url = URL(string: urlString) ?? URL(string: "")!
+        self.urlString = urlString
         self.scale = scale
         self.transaction = transaction
         self.content = content
@@ -27,18 +27,20 @@ public struct CacheImage<Content: View>: View{
     
     public var body: some View{
         //이미 캐시에 있다면 여기에서 이미지를 보여준다.
-        if let cached = ImageCacher[url] {
-            let _ = print("cached: \(url.absoluteString)")
+        if let cached = ImageCacher[urlString] {
+            let _ = print("cached: \(urlString)")
             content(.success(cached))
         }else{
         // 캐시에 이미지가 없다면 AsyncImage로 받아온다.
-            let _ = print("request: \(url.absoluteString)")
-            AsyncImage(
-                url: url,
-                scale: scale,
-                transaction: transaction
-            ){ phase in
-                cacheAndRender(phase: phase)
+            let _ = print("request: \(urlString)")
+            if let url = URL(string: urlString) {
+                AsyncImage(
+                    url: url,
+                    scale: scale,
+                    transaction: transaction
+                ){ phase in
+                    cacheAndRender(phase: phase)
+                }
             }
         }
     }
@@ -46,7 +48,7 @@ public struct CacheImage<Content: View>: View{
     private func cacheAndRender(phase: AsyncImagePhase) -> some View{
         if case .success (let image) = phase {
             //캐시에 저장해주고,
-            ImageCacher[url] = image
+            ImageCacher[urlString] = image
         }
         //content에 되돌려준다.
         return content(phase)
@@ -54,8 +56,8 @@ public struct CacheImage<Content: View>: View{
 }
 
 fileprivate actor ImageCacher{
-    static private var cache: [URL: Image] = [:]
-    static subscript(url: URL) -> Image?{
+    static private var cache: [String: Image] = [:]
+    static subscript(url: String) -> Image?{
         get{
             ImageCacher.cache[url]
         }
