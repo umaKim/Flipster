@@ -187,6 +187,17 @@
                ReferencedContainer = "container:AQX.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO"
+            parallelizable = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "7A87BD912AA5F2CC0040020B"
+               BuildableName = "SwiftUIImageCachKitTests.xctest"
+               BlueprintName = "SwiftUIImageCachKitTests"
+               ReferencedContainer = "container:AQX.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction
