@@ -59,7 +59,7 @@ final class TradeFeatureTests: XCTestCase {
     }
     
     func test_FilteredCryptosWhenSearching() {
-        let expectation = expectation(description: "Fetch mostTraded data")
+        let expectation = expectation(description: "Filter searched crypto data")
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             self.vm.viewStatus = .searching
@@ -71,7 +71,7 @@ final class TradeFeatureTests: XCTestCase {
     }
     
     func test_WsValue() {
-        let expectation = expectation(description: "Fetch changed ws coin price")
+        let expectation = expectation(description: "Fetch changed web socket coin price")
         DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
             XCTAssertEqual(
                 self.vm.filteredCryptos[0].currentPrice,
