@@ -55,7 +55,7 @@ public struct CacheImage<Content: View>: View{
     }
 }
 
-fileprivate actor ImageCacher{
+fileprivate final class ImageCacher {
     static private var cache: [String: Image] = [:]
     static subscript(url: String) -> Image?{
         get{
