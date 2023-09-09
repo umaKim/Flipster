@@ -8,7 +8,7 @@ import Combine
 import Service
 import Models
 import Foundation
-@testable import TradeFeature
+import TradeFeature
 
 struct MockSocket: WebsocketRequestable, UrlConfigurable {
     func urlMaker() -> URL {
