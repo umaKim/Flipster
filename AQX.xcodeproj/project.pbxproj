@@ -121,6 +121,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		7A0C6EA32AAC8CB3000278B1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7AE3D2652A7900630041603F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7ACF7A832A92397300A08D8F;
+			remoteInfo = TradeFeature;
+		};
 		7A1051F32A926D1C007EF3DE /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 7AE3D2652A7900630041603F /* Project object */;
@@ -148,13 +155,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = 7A667EFA2A96367F00873922;
 			remoteInfo = Service;
-		};
-		7A56B2AB2AA11880006D82F6 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 7AE3D2652A7900630041603F /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 7A56B2962AA1169D006D82F6;
-			remoteInfo = Mock;
 		};
 		7A56B2AD2AA119EF006D82F6 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -282,13 +282,6 @@
 			remoteGlobalIDString = 7AE3D26C2A7900630041603F;
 			remoteInfo = AQX;
 		};
-		7A87BD9C2AA5F2CD0040020B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 7AE3D2652A7900630041603F /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 7A87BD882AA5F2CC0040020B;
-			remoteInfo = SwiftUIImageCachKit;
-		};
 		7A87BDA82AA6099F0040020B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 7AE3D2652A7900630041603F /* Project object */;
@@ -316,13 +309,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = 7AE3D26C2A7900630041603F;
 			remoteInfo = AQX;
-		};
-		7ACF7A8F2A92397300A08D8F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 7AE3D2652A7900630041603F /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 7ACF7A832A92397300A08D8F;
-			remoteInfo = TradeFeature;
 		};
 		7ACF7A912A92397300A08D8F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -1425,8 +1411,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				7A56B2AC2AA11880006D82F6 /* PBXTargetDependency */,
-				7ACF7A902A92397300A08D8F /* PBXTargetDependency */,
+				7A0C6EA42AAC8CB3000278B1 /* PBXTargetDependency */,
 				7ACF7A922A92397300A08D8F /* PBXTargetDependency */,
 			);
 			name = TradeFeatureTests;
@@ -1487,8 +1472,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				7A667FB02A965BF800873922 /* PBXTargetDependency */,
-				7A87BD9D2AA5F2CD0040020B /* PBXTargetDependency */,
 			);
 			name = AQX;
 			productName = AQX;
@@ -2292,6 +2275,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		7A0C6EA42AAC8CB3000278B1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7ACF7A832A92397300A08D8F /* TradeFeature */;
+			targetProxy = 7A0C6EA32AAC8CB3000278B1 /* PBXContainerItemProxy */;
+		};
 		7A1051F42A926D1C007EF3DE /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 7A1051E72A926D1C007EF3DE /* AQXTradeDetailFeature */;
@@ -2311,11 +2299,6 @@
 			isa = PBXTargetDependency;
 			target = 7A667EFA2A96367F00873922 /* Service */;
 			targetProxy = 7A56B2A92AA1186A006D82F6 /* PBXContainerItemProxy */;
-		};
-		7A56B2AC2AA11880006D82F6 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 7A56B2962AA1169D006D82F6 /* Mock */;
-			targetProxy = 7A56B2AB2AA11880006D82F6 /* PBXContainerItemProxy */;
 		};
 		7A56B2AE2AA119EF006D82F6 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -2397,10 +2380,6 @@
 			target = 7A1051E72A926D1C007EF3DE /* AQXTradeDetailFeature */;
 			targetProxy = 7A667FA72A96576D00873922 /* PBXContainerItemProxy */;
 		};
-		7A667FB02A965BF800873922 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			productRef = 7A667FAF2A965BF800873922 /* Kingfisher */;
-		};
 		7A87BD952AA5F2CD0040020B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 7A87BD882AA5F2CC0040020B /* SwiftUIImageCachKit */;
@@ -2410,11 +2389,6 @@
 			isa = PBXTargetDependency;
 			target = 7AE3D26C2A7900630041603F /* AQX */;
 			targetProxy = 7A87BD962AA5F2CD0040020B /* PBXContainerItemProxy */;
-		};
-		7A87BD9D2AA5F2CD0040020B /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 7A87BD882AA5F2CC0040020B /* SwiftUIImageCachKit */;
-			targetProxy = 7A87BD9C2AA5F2CD0040020B /* PBXContainerItemProxy */;
 		};
 		7A87BDA92AA6099F0040020B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -2435,11 +2409,6 @@
 			isa = PBXTargetDependency;
 			target = 7AE3D26C2A7900630041603F /* AQX */;
 			targetProxy = 7ACF7A6B2A92394600A08D8F /* PBXContainerItemProxy */;
-		};
-		7ACF7A902A92397300A08D8F /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 7ACF7A832A92397300A08D8F /* TradeFeature */;
-			targetProxy = 7ACF7A8F2A92397300A08D8F /* PBXContainerItemProxy */;
 		};
 		7ACF7A922A92397300A08D8F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -3682,14 +3651,6 @@
 				kind = branch;
 			};
 		};
-		7A91CA172A8CA6A300B1C6B0 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 7.0.0;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -3697,11 +3658,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 7A667F332A963E7000873922 /* XCRemoteSwiftPackageReference "Starscream" */;
 			productName = Starscream;
-		};
-		7A667FAF2A965BF800873922 /* Kingfisher */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 7A91CA172A8CA6A300B1C6B0 /* XCRemoteSwiftPackageReference "Kingfisher" */;
-			productName = Kingfisher;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
