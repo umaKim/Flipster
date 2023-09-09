@@ -28,7 +28,7 @@ final class ChartView: UIView {
     private var candleStickSeries: CandlestickSeries?
     private var volumeSeries: HistogramSeries?
     
-    private var cancellables: Set<AnyCancellable> = .init()
+//    private var cancellables: Set<AnyCancellable> = .init()
     init() {
         super.init(frame: .zero)
         setupChart()
