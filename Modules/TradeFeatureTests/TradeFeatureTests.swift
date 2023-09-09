@@ -13,13 +13,17 @@ import XCTest
 
 final class TradeFeatureTests: XCTestCase {
     
+    var mockREST: MockRESTApiManager!
+    var mockSocket: MockWebSocketApiManger!
     var vm: TradeFeatureViewModel!
     
     override func setUpWithError() throws {
+        mockREST = MockRESTApiManager()
+        mockSocket = MockWebSocketApiManger()
         vm = TradeFeatureViewModel(
             repository: MockTradeViewRepositoryImp(
-                networkManager: MockRESTApiManager(),
-                websocket: MockWebSocketApiManger()
+                networkManager: mockREST,
+                websocket: mockSocket
             )
         )
     }
@@ -93,7 +97,8 @@ final class TradeFeatureTests: XCTestCase {
         XCTAssertNil(vm.nextState)
     }
     
-    func test_OnDisappear() {
+    func test_WSisDisconnectedWhenOnDisappearIsCalled() {
         vm.onDisappear()
+        XCTAssertTrue(mockSocket.isDisconnected)
     }
 }

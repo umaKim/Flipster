@@ -16,6 +16,8 @@ public class MockWebSocketApiManger {
         triggerConnected()
     }
     
+    public var isDisconnected: Bool = false
+    
     public init() { }
 }
 
@@ -27,10 +29,11 @@ extension MockWebSocketApiManger: WebSocketApiProtocol {
 
     public func connect(to wsRequestable: Service.WebsocketRequestable) {
         configure(with: wsRequestable)
+        isDisconnected = false
     }
     
     public func disconnect() {
-        
+        isDisconnected = true
     }
     
     public func write(_ text: String) {
