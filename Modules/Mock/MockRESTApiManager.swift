@@ -9,8 +9,8 @@ import Service
 import Foundation
 
 public class MockRESTApiManager: RESTApiProtocol {
-    public func request<T>(url: URL, expecting: T.Type) async -> Result<T, Service.APIError> where T : Decodable {
-        return .success(MockData.crypto as! T)
+    public func request<T>(url: URL) async -> Result<T, Service.APIError> where T : Decodable {
+        .success(MockData.crypto as! T)
     }
     
     public init() { }

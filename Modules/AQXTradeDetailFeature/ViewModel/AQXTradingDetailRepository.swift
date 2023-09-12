@@ -21,6 +21,6 @@ public final class AQXTradingDetailRepositoryImp: AQXTradingDetailRepository {
     }
     
     public func fetchChartData(url: URL) async -> Result<Models.ChartData, Service.APIError> {
-        return await networkManager.request(url: url, expecting: Models.ChartData.self)
+        await networkManager.request(url: url)
     }
 }

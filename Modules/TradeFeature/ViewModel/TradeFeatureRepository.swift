@@ -80,6 +80,6 @@ extension TradeRepositoryImp: WebSocketApiManagerDelegate {
 //MARK: - REST API
 extension TradeRepositoryImp {
     public func fetchCoins(url: URL) async -> Result<[Models.CoinCapAsset], Service.APIError> {
-        return await networkManager.request(url: url, expecting: [CoinCapAsset].self)
+        await networkManager.request(url: url)
     }
 }

@@ -9,16 +9,16 @@ import Combine
 import Foundation
 
 public protocol RESTApiProtocol {
-    func request<T: Decodable>(url: URL, expecting: T.Type) async -> Result<T, APIError>
+    func request<T: Decodable>(url: URL) async -> Result<T, APIError>
 }
 
 public final actor RESTApiManager: RESTApiProtocol {
     public init() { }
     
-    public func request<T: Decodable>(url: URL, expecting: T.Type) async -> Result<T, APIError> {
+    public func request<T: Decodable>(url: URL) async -> Result<T, APIError> {
         do {
             let (data, _) = try await URLSession.shared.data(from: url)
-            if let result = try? expecting.decode(from: data) {
+            if let result = try? JSONDecoder().decode(T.self, from: data) {
                 return .success(result)
             } else {
                 return .failure(.noDataReturned)
