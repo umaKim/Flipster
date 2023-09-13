@@ -28,11 +28,9 @@ public struct CacheImage<Content: View>: View{
     public var body: some View{
         //이미 캐시에 있다면 여기에서 이미지를 보여준다.
         if let cached = ImageCacher[urlString] {
-            let _ = print("cached: \(urlString)")
             content(.success(cached))
         }else{
         // 캐시에 이미지가 없다면 AsyncImage로 받아온다.
-            let _ = print("request: \(urlString)")
             if let url = URL(string: urlString) {
                 AsyncImage(
                     url: url,
@@ -58,10 +56,10 @@ public struct CacheImage<Content: View>: View{
 fileprivate final class ImageCacher {
     static private var cache: [String: Image] = [:]
     static subscript(url: String) -> Image?{
-        get{
+        get {
             ImageCacher.cache[url]
         }
-        set{
+        set {
             ImageCacher.cache[url] = newValue
         }
     }
