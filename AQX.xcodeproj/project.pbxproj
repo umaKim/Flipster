@@ -18,8 +18,6 @@
 		7A1051F22A926D1C007EF3DE /* AQXTradeDetailFeature.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A1051E82A926D1C007EF3DE /* AQXTradeDetailFeature.framework */; };
 		7A1051F92A926D1C007EF3DE /* AQXTradeDetailFeatureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A1051F82A926D1C007EF3DE /* AQXTradeDetailFeatureTests.swift */; };
 		7A1051FA2A926D1C007EF3DE /* AQXTradeDetailFeature.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A1051EA2A926D1C007EF3DE /* AQXTradeDetailFeature.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		7A1051FD2A926D1C007EF3DE /* AQXTradeDetailFeature.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A1051E82A926D1C007EF3DE /* AQXTradeDetailFeature.framework */; };
-		7A1051FE2A926D1C007EF3DE /* AQXTradeDetailFeature.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7A1051E82A926D1C007EF3DE /* AQXTradeDetailFeature.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		7A56B26E2AA08B84006D82F6 /* AQXTradingDetailRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A56B26D2AA08B84006D82F6 /* AQXTradingDetailRepository.swift */; };
 		7A56B2712AA08F65006D82F6 /* TradeFeatureRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A56B26F2AA08E25006D82F6 /* TradeFeatureRepository.swift */; };
 		7A56B2732AA0D510006D82F6 /* WebsocketRequestable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A56B2722AA0D510006D82F6 /* WebsocketRequestable.swift */; };
@@ -30,8 +28,6 @@
 		7A56B28E2AA0FD07006D82F6 /* ChartData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A56B28B2AA0FC33006D82F6 /* ChartData.swift */; };
 		7A56B29B2AA1169D006D82F6 /* Mock.docc in Sources */ = {isa = PBXBuildFile; fileRef = 7A56B29A2AA1169D006D82F6 /* Mock.docc */; };
 		7A56B29C2AA1169D006D82F6 /* Mock.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A56B2992AA1169D006D82F6 /* Mock.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		7A56B29F2AA1169E006D82F6 /* Mock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A56B2972AA1169D006D82F6 /* Mock.framework */; };
-		7A56B2A02AA1169E006D82F6 /* Mock.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7A56B2972AA1169D006D82F6 /* Mock.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		7A56B2A42AA116AD006D82F6 /* MockWebSocketApiManger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A56B27F2AA0F9B4006D82F6 /* MockWebSocketApiManger.swift */; };
 		7A56B2A52AA116AD006D82F6 /* MockTradeViewRepositoryImp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A56B28F2AA0FFE4006D82F6 /* MockTradeViewRepositoryImp.swift */; };
 		7A56B2A62AA116AD006D82F6 /* MockRESTApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A56B2812AA0F9BF006D82F6 /* MockRESTApiManager.swift */; };
@@ -41,8 +37,6 @@
 		7A667F052A96368000873922 /* Service.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A667EFB2A96367F00873922 /* Service.framework */; };
 		7A667F0C2A96368000873922 /* ServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A667F0B2A96368000873922 /* ServiceTests.swift */; };
 		7A667F0D2A96368000873922 /* Service.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A667EFD2A96367F00873922 /* Service.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		7A667F102A96368000873922 /* Service.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A667EFB2A96367F00873922 /* Service.framework */; };
-		7A667F112A96368000873922 /* Service.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7A667EFB2A96367F00873922 /* Service.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		7A667F1E2A96388E00873922 /* Decodable+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A667F1C2A96388E00873922 /* Decodable+Extension.swift */; };
 		7A667F212A96395A00873922 /* FinnHubSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A667F1A2A9636B600873922 /* FinnHubSocket.swift */; };
 		7A667F252A96396900873922 /* RESTApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AFC14762A8B9A150092B426 /* RESTApiManager.swift */; };
@@ -61,8 +55,6 @@
 		7A667F472A96434100873922 /* Models.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A667F3D2A96434100873922 /* Models.framework */; };
 		7A667F4E2A96434200873922 /* ModelsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A667F4D2A96434200873922 /* ModelsTests.swift */; };
 		7A667F4F2A96434200873922 /* Models.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A667F3F2A96434100873922 /* Models.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		7A667F522A96434200873922 /* Models.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A667F3D2A96434100873922 /* Models.framework */; };
-		7A667F532A96434200873922 /* Models.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7A667F3D2A96434100873922 /* Models.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		7A667F5C2A96436B00873922 /* CoinCapAsset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A667F362A9642DB00873922 /* CoinCapAsset.swift */; };
 		7A667F662A96438600873922 /* TabFeature.docc in Sources */ = {isa = PBXBuildFile; fileRef = 7A667F652A96438600873922 /* TabFeature.docc */; };
 		7A667F6C2A96438600873922 /* TabFeature.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A667F622A96438600873922 /* TabFeature.framework */; };
@@ -78,8 +70,6 @@
 		7A87BD932AA5F2CD0040020B /* SwiftUIImageCachKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A87BD892AA5F2CC0040020B /* SwiftUIImageCachKit.framework */; };
 		7A87BD9A2AA5F2CD0040020B /* SwiftUIImageCachKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A87BD992AA5F2CD0040020B /* SwiftUIImageCachKitTests.swift */; };
 		7A87BD9B2AA5F2CD0040020B /* SwiftUIImageCachKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A87BD8B2AA5F2CC0040020B /* SwiftUIImageCachKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		7A87BD9E2AA5F2CD0040020B /* SwiftUIImageCachKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A87BD892AA5F2CC0040020B /* SwiftUIImageCachKit.framework */; };
-		7A87BD9F2AA5F2CD0040020B /* SwiftUIImageCachKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7A87BD892AA5F2CC0040020B /* SwiftUIImageCachKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		7A87BDA72AA5F2DD0040020B /* ImageCacher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A87BDA62AA5F2DD0040020B /* ImageCacher.swift */; };
 		7ABCDF732A966970009B8B76 /* LightweightCharts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7ABCDF722A966970009B8B76 /* LightweightCharts.framework */; };
 		7ABE46E32A97249400F7237F /* SectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ABE46E22A97249400F7237F /* SectionHeaderView.swift */; };
@@ -88,8 +78,6 @@
 		7ACF7A682A92394600A08D8F /* Utils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7ACF7A5E2A92394600A08D8F /* Utils.framework */; };
 		7ACF7A6F2A92394600A08D8F /* UtilsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ACF7A6E2A92394600A08D8F /* UtilsTests.swift */; };
 		7ACF7A702A92394600A08D8F /* Utils.h in Headers */ = {isa = PBXBuildFile; fileRef = 7ACF7A602A92394600A08D8F /* Utils.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		7ACF7A732A92394600A08D8F /* Utils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7ACF7A5E2A92394600A08D8F /* Utils.framework */; };
-		7ACF7A742A92394600A08D8F /* Utils.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7ACF7A5E2A92394600A08D8F /* Utils.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		7ACF7A7C2A92395700A08D8F /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AA0DFB32A8BDECE0048F32A /* UIColor+Extension.swift */; };
 		7ACF7A7D2A92395700A08D8F /* NavigationLink+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A95570E2A8FE184006DF073 /* NavigationLink+Extension.swift */; };
 		7ACF7A7E2A92395700A08D8F /* View+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A95571D2A900037006DF073 /* View+Extension.swift */; };
@@ -97,14 +85,10 @@
 		7ACF7A8E2A92397300A08D8F /* TradeFeature.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7ACF7A842A92397300A08D8F /* TradeFeature.framework */; };
 		7ACF7A952A92397300A08D8F /* TradeFeatureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ACF7A942A92397300A08D8F /* TradeFeatureTests.swift */; };
 		7ACF7A962A92397300A08D8F /* TradeFeature.h in Headers */ = {isa = PBXBuildFile; fileRef = 7ACF7A862A92397300A08D8F /* TradeFeature.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		7ACF7A992A92397300A08D8F /* TradeFeature.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7ACF7A842A92397300A08D8F /* TradeFeature.framework */; };
-		7ACF7A9A2A92397300A08D8F /* TradeFeature.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7ACF7A842A92397300A08D8F /* TradeFeature.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		7ACF7AAA2A92397E00A08D8F /* AssetFeature.docc in Sources */ = {isa = PBXBuildFile; fileRef = 7ACF7AA92A92397E00A08D8F /* AssetFeature.docc */; };
 		7ACF7AB02A92397E00A08D8F /* AssetFeature.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7ACF7AA62A92397E00A08D8F /* AssetFeature.framework */; };
 		7ACF7AB72A92397E00A08D8F /* AssetFeatureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ACF7AB62A92397E00A08D8F /* AssetFeatureTests.swift */; };
 		7ACF7AB82A92397E00A08D8F /* AssetFeature.h in Headers */ = {isa = PBXBuildFile; fileRef = 7ACF7AA82A92397E00A08D8F /* AssetFeature.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		7ACF7ABB2A92397E00A08D8F /* AssetFeature.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7ACF7AA62A92397E00A08D8F /* AssetFeature.framework */; };
-		7ACF7ABC2A92397E00A08D8F /* AssetFeature.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7ACF7AA62A92397E00A08D8F /* AssetFeature.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		7ACF7AC32A92398E00A08D8F /* AssetsFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A4E07FF2A7A94F500416AF6 /* AssetsFeature.swift */; };
 		7AE3D2752A7900650041603F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7AE3D2742A7900650041603F /* Assets.xcassets */; };
 		7AE3D2782A7900650041603F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7AE3D2772A7900650041603F /* Preview Assets.xcassets */; };
@@ -340,14 +324,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				7A1051FE2A926D1C007EF3DE /* AQXTradeDetailFeature.framework in Embed Frameworks */,
-				7A667F112A96368000873922 /* Service.framework in Embed Frameworks */,
-				7A667F532A96434200873922 /* Models.framework in Embed Frameworks */,
-				7ACF7A9A2A92397300A08D8F /* TradeFeature.framework in Embed Frameworks */,
-				7A87BD9F2AA5F2CD0040020B /* SwiftUIImageCachKit.framework in Embed Frameworks */,
-				7A56B2A02AA1169E006D82F6 /* Mock.framework in Embed Frameworks */,
-				7ACF7ABC2A92397E00A08D8F /* AssetFeature.framework in Embed Frameworks */,
-				7ACF7A742A92394600A08D8F /* Utils.framework in Embed Frameworks */,
 				7A667F782A96438700873922 /* TabFeature.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -638,15 +614,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7A87BD9E2AA5F2CD0040020B /* SwiftUIImageCachKit.framework in Frameworks */,
-				7A667F522A96434200873922 /* Models.framework in Frameworks */,
-				7ACF7A732A92394600A08D8F /* Utils.framework in Frameworks */,
-				7ACF7A992A92397300A08D8F /* TradeFeature.framework in Frameworks */,
-				7ACF7ABB2A92397E00A08D8F /* AssetFeature.framework in Frameworks */,
-				7A1051FD2A926D1C007EF3DE /* AQXTradeDetailFeature.framework in Frameworks */,
 				7A667F772A96438700873922 /* TabFeature.framework in Frameworks */,
-				7A667F102A96368000873922 /* Service.framework in Frameworks */,
-				7A56B29F2AA1169E006D82F6 /* Mock.framework in Frameworks */,
 				FC9DF97D833BDDA2E8B8898F /* Pods_AQX.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
