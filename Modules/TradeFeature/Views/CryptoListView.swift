@@ -40,7 +40,6 @@ struct CryptoListView<HeaderContent: View>: View {
         self.onTap = onTap
     }
     
-    @ViewBuilder
     var body: some View {
         Section {
             switch axis {
