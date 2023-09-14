@@ -10,7 +10,7 @@ import Service
 import XCTest
 @testable import AQXTradeDetailFeature
 
-class AQXTradingDetailViewModelTests: XCTestCase {
+final class AQXTradingDetailViewModelTests: XCTestCase {
     
     var viewModel: AQXTradingDetailViewModel!
     
