@@ -93,6 +93,7 @@
 		7AE3D2752A7900650041603F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7AE3D2742A7900650041603F /* Assets.xcassets */; };
 		7AE3D2782A7900650041603F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7AE3D2772A7900650041603F /* Preview Assets.xcassets */; };
 		7AEAE06D2A93282D0074EDD9 /* Double+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AEAE06C2A93282D0074EDD9 /* Double+Extension.swift */; };
+		7AF57F5C2AB32B5C0081742F /* TradeRepositoryDataConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AF57F5B2AB32B5C0081742F /* TradeRepositoryDataConvertible.swift */; };
 		7AFD7F1E2A986CCA00E9B705 /* CryptoListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AFD7F1D2A986CCA00E9B705 /* CryptoListView.swift */; };
 		7CDB112598F2A1EAC03845C9 /* Pods_AQXTradeDetailFeature_AQXTradeDetailFeatureTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFCDDDA89683FB50160F95AE /* Pods_AQXTradeDetailFeature_AQXTradeDetailFeatureTests.framework */; };
 		956898B018641130F26C19B7 /* Pods_TabFeature_TabFeatureTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2AE10E9197D4E22B0603A058 /* Pods_TabFeature_TabFeatureTests.framework */; };
@@ -442,6 +443,7 @@
 		7AE3D2772A7900650041603F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		7AE3D27E2A793B250041603F /* AQXTradingDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AQXTradingDetailView.swift; sourceTree = "<group>"; };
 		7AEAE06C2A93282D0074EDD9 /* Double+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Extension.swift"; sourceTree = "<group>"; };
+		7AF57F5B2AB32B5C0081742F /* TradeRepositoryDataConvertible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradeRepositoryDataConvertible.swift; sourceTree = "<group>"; };
 		7AFC146E2A8B7EA10092B426 /* SearchBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarView.swift; sourceTree = "<group>"; };
 		7AFC14702A8B7EC40092B426 /* TradeFeatureViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradeFeatureViewModel.swift; sourceTree = "<group>"; };
 		7AFC14762A8B9A150092B426 /* RESTApiManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RESTApiManager.swift; sourceTree = "<group>"; };
@@ -769,6 +771,7 @@
 			children = (
 				7AFC14702A8B7EC40092B426 /* TradeFeatureViewModel.swift */,
 				7A56B26F2AA08E25006D82F6 /* TradeFeatureRepository.swift */,
+				7AF57F5B2AB32B5C0081742F /* TradeRepositoryDataConvertible.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -2206,6 +2209,7 @@
 				7ABE46E52A9724A900F7237F /* CryptoVerticalListView.swift in Sources */,
 				7A667F312A963AD200873922 /* SearchBarView.swift in Sources */,
 				7ABE46E32A97249400F7237F /* SectionHeaderView.swift in Sources */,
+				7AF57F5C2AB32B5C0081742F /* TradeRepositoryDataConvertible.swift in Sources */,
 				7A667F302A963ACF00873922 /* CryptoHorizontalListView.swift in Sources */,
 				7ACF7A882A92397300A08D8F /* TradeFeature.docc in Sources */,
 				7A667F322A963AD800873922 /* TradeFeatureViewModel.swift in Sources */,

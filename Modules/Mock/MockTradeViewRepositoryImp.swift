@@ -53,23 +53,19 @@ extension MockTradeViewRepositoryImp: WebSocketApiManagerDelegate {
     }
     
     public func connected() {
-        DispatchQueue.global().async {[weak self] in
-            self?.symbols.forEach({ symbol in
-                let symbolForFinHub = "BINANCE:\(symbol)USDT"
-                let message = "{\"type\":\"subscribe\",\"symbol\":\"\(symbolForFinHub)\"}"
-                self?.websocket.write(message)
-            })
-        }
+        convertMessage(with: symbols, to: {[weak self] message in
+            self?.websocket.write(message)
+        })
     }
     
     public func didReceive(_ text: String) {
-        if let data: Data = text.data(using: .utf8) {
-            if let tickData = try? WebSocketResponse.decode(from: data)?.webSocketData {
-                self.dataSubject.send(tickData)
-            }
-        }
+        convertTickData(with: text, to: {[weak self] tickData in
+            self?.dataSubject.send(tickData)
+        })
     }
 }
+
+extension MockTradeViewRepositoryImp: TradeRepositoryDataConvertible { }
 
 //MARK: - Rest API
 extension MockTradeViewRepositoryImp {
