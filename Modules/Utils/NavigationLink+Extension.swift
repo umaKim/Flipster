@@ -14,6 +14,5 @@ extension NavigationLink where Label == EmptyView {
             destination:{ destination },
             label: { EmptyView() }
         )
-
     }
 }
