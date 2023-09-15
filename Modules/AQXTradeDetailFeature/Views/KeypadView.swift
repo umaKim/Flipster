@@ -34,7 +34,7 @@ struct KeyPad: View {
 }
 
 struct KeyPadRow: View {
-    var keys: [String]
+    let keys: [String]
 
     var body: some View {
         HStack {
