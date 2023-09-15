@@ -42,12 +42,12 @@ public struct AQXTradingDetailView: View {
     
     public var body: some View {
         contentView
-        .navigationBarHidden(true)
-        .onDisappear {
-            viewModel.onDisappear()
-        }
-        .toolbar(.hidden, for: .tabBar)
-        .background(Color(uiColor: .flipsterBlack))
+            .navigationBarHidden(true)
+            .onDisappear {
+                viewModel.onDisappear()
+            }
+            .toolbar(.hidden, for: .tabBar)
+            .background(Color(uiColor: .flipsterBlack))
     }
     
     private var contentView: some View {
