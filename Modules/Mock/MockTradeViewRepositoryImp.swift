@@ -65,8 +65,6 @@ extension MockTradeViewRepositoryImp: WebSocketApiManagerDelegate {
     }
 }
 
-extension MockTradeViewRepositoryImp: TradeRepositoryDataConvertible { }
-
 //MARK: - Rest API
 extension MockTradeViewRepositoryImp {
     public func fetchCoins(url: URL) async -> Result<[Models.CoinCapAsset], Service.APIError> {

@@ -10,7 +10,7 @@ import Combine
 import Utils
 import Foundation
 
-public protocol TradeRepository {
+public protocol TradeRepository: TradeRepositoryDataConvertible {
     // MARK: - REST API
     func fetchCoins(url: URL) async -> Result<[CoinCapAsset], APIError>
     
@@ -70,9 +70,6 @@ extension TradeRepositoryImp: WebSocketApiManagerDelegate {
         })
     }
 }
-
-//MARK: - TradeRepositoryDataConvertible
-extension TradeRepositoryImp: TradeRepositoryDataConvertible { }
 
 //MARK: - REST API
 extension TradeRepositoryImp {
