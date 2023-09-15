@@ -11,11 +11,6 @@ import Service
 import SwiftUI
 import Utils
 
-enum TradeViewStatus {
-    case searching
-    case normal
-}
-
 public struct TradeFeatureView: View {
     @ObservedObject private var viewModel: TradeFeatureViewModel
     

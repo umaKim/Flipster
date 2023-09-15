@@ -9,6 +9,11 @@ import Service
 import Combine
 import Foundation
 
+enum TradeViewStatus {
+    case searching
+    case normal
+}
+
 public enum TradeFeatureViewModelNextState: Hashable {
     case detailView
 }
