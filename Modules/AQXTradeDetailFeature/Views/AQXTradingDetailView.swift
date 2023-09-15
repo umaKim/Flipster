@@ -60,6 +60,7 @@ public struct AQXTradingDetailView: View {
             leveragePercentageButtonView
             numberKeyPadView
         }
+        .animation(.easeInOut, value: viewModel.chartViewStatus)
     }
 }
 
@@ -141,7 +142,6 @@ extension AQXTradingDetailView {
             }
         }
         .frame(height: UIScreen.main.bounds.height/2.8 * viewModel.chartViewStatus.rawValue)
-        .animation(.default, value: viewModel.chartViewStatus)
     }
     
     private var leverageTypeBarView: some View {
@@ -164,7 +164,6 @@ extension AQXTradingDetailView {
             ).foregroundColor(viewModel.tradingType == .short ? Color.red : Color.gray)
         }
         .padding(.top)
-        .animation(.default, value: viewModel.chartViewStatus)
     }
     
     private var priceInputView: some View {
@@ -188,7 +187,6 @@ extension AQXTradingDetailView {
                 .foregroundColor(Color(uiColor: .systemGray))
         }
         .padding()
-        .animation(.easeInOut, value: viewModel.chartViewStatus)
     }
     
     private var leveragePercentageButtonView: some View {
@@ -229,7 +227,6 @@ extension AQXTradingDetailView {
             .cornerRadius(8)
             
         }
-        .animation(.default, value: viewModel.chartViewStatus)
         .padding(.vertical)
     }
     
