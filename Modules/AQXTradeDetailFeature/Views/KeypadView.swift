@@ -21,7 +21,7 @@ struct KeyPad: View {
 
     private func keyWasPressed(_ key: String) {
         switch key {
-        case "." where string.contains("."): break
+        case "." where string.lazy.contains("."): break
         case "." where string == "0" : string += key
         case "⌫":
             if string.isEmpty { break }

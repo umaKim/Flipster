@@ -28,7 +28,7 @@ public final class TradeFeatureViewModel: ObservableObject {
         get {
             if viewStatus == .searching {
                 let lowercasedQuery = searchText.uppercased()
-                return allCryptos.filter({
+                return allCryptos.lazy.filter({
                     $0.name.uppercased().contains(lowercasedQuery) ||
                     $0.symbol.uppercased().contains(lowercasedQuery)
                 })
