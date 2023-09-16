@@ -129,16 +129,27 @@ extension AQXTradingDetailView {
     
     private var chartView: some View {
         ZStack {
-            ChartUIView(chartData: viewModel.chartData)
-                .padding(.top)
-            
-            if viewModel.chartData == nil {
+            switch viewModel.chartStatus {
+            case .data(let data):
+                ChartUIView(chartData: data)
+                    .padding(.top)
+            case .loading(let message):
                 VStack(alignment: .center) {
                     Image(systemName: "chart.bar.fill")
-                    Text("Loading...")
+                    Text(message)
                         .multilineTextAlignment(.center)
                 }
                 .foregroundColor(Color(uiColor: .systemGray3))
+            case .error(let message):
+                VStack(alignment: .center) {
+                    Image(systemName: "chart.bar.fill")
+                    Text(message)
+                        .multilineTextAlignment(.center)
+                }
+                .foregroundColor(Color(uiColor: .systemGray3))
+                
+            case .none:
+                EmptyView()
             }
         }
         .frame(height: UIScreen.main.bounds.height/2.8 * viewModel.chartViewStatus.rawValue)

@@ -9,10 +9,17 @@ import Service
 import Combine
 import Foundation
 
+public enum ChartStatus {
+    public typealias Message = String
+    case data(ChartData?)
+    case loading(Message)
+    case error(Message)
+}
+
 public final class AQXTradingDetailViewModel: ObservableObject {
     
     public var crypto: CoinCapAsset?
-    @Published public var chartData: ChartData?
+    @Published public var chartStatus: ChartStatus? = nil
     @Published public var priceInput: String = ""
     @Published public var chartViewStatus: AQXTradingDetailChartStatus = .show
     @Published public var tradingType: AQXTradingDetailViewTradingType = .long
@@ -35,26 +42,30 @@ public final class AQXTradingDetailViewModel: ObservableObject {
         self.crypto = crypto
         self.repository = repository
         self.cancellables = .init()
-        fetchChartData()
     }
     
     public func fetchChartData() {
+        chartStatus = .loading("Loading...")
         guard let url = coinChartDataUrl else { return }
         Task {
             let result = await repository.fetchChartData(url: url)
             DispatchQueue.main.async {
                 switch result {
                 case .success(let chartData):
-                    self.chartData = chartData
+                    chartStatus = .data(chartData)
                 case .failure(let error):
-                    print(error)
+                    chartStatus = .error(error.localizedDescription)
                 }
             }
         }
     }
     
+    public func onAppear() {
+        fetchChartData()
+    }
+    
     public func onDisappear() {
-        self.chartData = nil
+        chartStatus = nil
     }
 }
 
