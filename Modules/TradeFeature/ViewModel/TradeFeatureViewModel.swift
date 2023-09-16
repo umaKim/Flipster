@@ -90,10 +90,10 @@ extension TradeFeatureViewModel {
         if cryptos.lazy.contains(where:{"BINANCE:\($0.symbol.uppercased())USDT" == data.symbol}) {
             for (index, model) in cryptos.enumerated() {
                 if "BINANCE:\(model.symbol.uppercased())USDT" == data.symbol {
-                    var temp = model
-                    temp.currentPrice = data.price
-                    cryptos[index] = temp
                     DispatchQueue.main.async {
+                        var temp = model
+                        temp.currentPrice = data.price
+                        cryptos[index] = temp
                         completion(cryptos)
                     }
                 }
