@@ -52,9 +52,9 @@ public final class AQXTradingDetailViewModel: ObservableObject {
             DispatchQueue.main.async {
                 switch result {
                 case .success(let chartData):
-                    chartStatus = .data(chartData)
+                    self.chartStatus = .data(chartData)
                 case .failure(let error):
-                    chartStatus = .error(error.localizedDescription)
+                    self.chartStatus = .error(error.localizedDescription)
                 }
             }
         }
