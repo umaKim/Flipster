@@ -85,33 +85,40 @@ extension TradeFeatureViewModel {
         }
     }
     
-    private func mapping(for cryptos: [CoinCapAsset], with data: WebSocketDatum) -> [CoinCapAsset] {
+    private func mapping(for cryptos: [CoinCapAsset], with data: WebSocketDatum, completion: @escaping ([CoinCapAsset]) -> Void) {
         var cryptos = cryptos
-        if cryptos.contains(where:{"BINANCE:\($0.symbol.uppercased())USDT" == data.symbol}) {
+        if cryptos.lazy.contains(where:{"BINANCE:\($0.symbol.uppercased())USDT" == data.symbol}) {
             for (index, model) in cryptos.enumerated() {
                 if "BINANCE:\(model.symbol.uppercased())USDT" == data.symbol {
                     var temp = model
                     temp.currentPrice = data.price
                     cryptos[index] = temp
-                    return cryptos
+                    DispatchQueue.main.async {
+                        completion(cryptos)
+                    }
                 }
             }
         }
-        return []
     }
     
     private func setupWs() {
         repository.connect()
-        repository.set(symbols: allCryptos.lazy.map({$0.symbol.uppercased()}))
+        repository.set(symbols: allCryptos.map({$0.symbol.uppercased()}))
         repository.dataPublisher
-            .receive(on: DispatchQueue.main)
+            .receive(on: DispatchQueue.global())
             .sink(receiveValue: {[weak self] receivedDatum in
                 guard let self = self else { return }
                 receivedDatum
                     .forEach { data in
-                        self.topMovers = self.mapping(for: self.topMovers, with: data)
-                        self.mostTraded = self.mapping(for: self.mostTraded, with: data)
-                        self.allCryptos = self.mapping(for: self.allCryptos, with: data)
+                        self.mapping(for: self.topMovers, with: data) {
+                            self.topMovers = $0
+                        }
+                        self.mapping(for: self.mostTraded, with: data) {
+                            self.mostTraded = $0
+                        }
+                        self.mapping(for: self.allCryptos, with: data) {
+                            self.allCryptos = $0
+                        }
                     }
             })
             .store(in: &cancellables)
