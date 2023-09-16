@@ -60,7 +60,6 @@
 		7A667F6C2A96438600873922 /* TabFeature.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A667F622A96438600873922 /* TabFeature.framework */; };
 		7A667F732A96438700873922 /* TabFeatureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A667F722A96438700873922 /* TabFeatureTests.swift */; };
 		7A667F742A96438700873922 /* TabFeature.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A667F642A96438600873922 /* TabFeature.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		7A667F772A96438700873922 /* TabFeature.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A667F622A96438600873922 /* TabFeature.framework */; };
 		7A667F782A96438700873922 /* TabFeature.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7A667F622A96438600873922 /* TabFeature.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		7A667F812A96439900873922 /* TabFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A4E07FB2A7A93C800416AF6 /* TabFeature.swift */; };
 		7A667F822A9643A000873922 /* AQXApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AE3D2702A7900630041603F /* AQXApp.swift */; };
@@ -252,6 +251,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 7A1051E72A926D1C007EF3DE;
 			remoteInfo = AQXTradeDetailFeature;
+		};
+		7A7FBBA02AB558DA00BC33F9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7AE3D2652A7900630041603F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7A667F612A96438600873922;
+			remoteInfo = TabFeature;
 		};
 		7A87BD942AA5F2CD0040020B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -623,7 +629,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7A667F772A96438700873922 /* TabFeature.framework in Frameworks */,
 				FC9DF97D833BDDA2E8B8898F /* Pods_AQX.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1451,6 +1456,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				7A7FBBA12AB558DA00BC33F9 /* PBXTargetDependency */,
 			);
 			name = AQX;
 			productName = AQX;
@@ -2359,6 +2365,11 @@
 			isa = PBXTargetDependency;
 			target = 7A1051E72A926D1C007EF3DE /* AQXTradeDetailFeature */;
 			targetProxy = 7A667FA72A96576D00873922 /* PBXContainerItemProxy */;
+		};
+		7A7FBBA12AB558DA00BC33F9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7A667F612A96438600873922 /* TabFeature */;
+			targetProxy = 7A7FBBA02AB558DA00BC33F9 /* PBXContainerItemProxy */;
 		};
 		7A87BD952AA5F2CD0040020B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
