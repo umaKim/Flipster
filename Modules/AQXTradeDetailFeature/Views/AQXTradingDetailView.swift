@@ -43,9 +43,8 @@ public struct AQXTradingDetailView: View {
     public var body: some View {
         contentView
             .navigationBarHidden(true)
-            .onDisappear {
-                viewModel.onDisappear()
-            }
+            .onAppear(perform: viewModel.onAppear)
+            .onDisappear(perform: viewModel.onDisappear)
             .toolbar(.hidden, for: .tabBar)
             .background(Color(uiColor: .flipsterBlack))
     }
