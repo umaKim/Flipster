@@ -32,7 +32,7 @@ public enum LeverageType: Int, Identifiable {
 }
 
 public struct AQXTradingDetailView: View {
-    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    @Environment(\.dismiss) var dismiss
     @StateObject private var viewModel: AQXTradingDetailViewModel
     @FocusState var focus: Bool
     
@@ -68,7 +68,7 @@ extension AQXTradingDetailView {
     private var navigationBar: some View {
         HStack {
             Button {
-                presentationMode.wrappedValue.dismiss()
+                dismiss()
             } label: {
                 HStack {
                     Image(systemName: "chevron.left")
