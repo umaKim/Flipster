@@ -28,7 +28,6 @@ final class ChartView: UIView {
     private var candleStickSeries: CandlestickSeries?
     private var volumeSeries: HistogramSeries?
     
-//    private var cancellables: Set<AnyCancellable> = .init()
     init() {
         super.init(frame: .zero)
         setupChart()
@@ -68,7 +67,7 @@ extension ChartView {
     private func setupChart() {
         let options = ChartOptions(
             layout: LayoutOptions(
-                background: .solid(color: .init(.flipsterGray)),
+                background: .solid(color: .init(.flipsterBlack)),
                 textColor: .init(.systemGray)
             ),
             rightPriceScale: VisiblePriceScaleOptions(borderColor: "rgba(197, 203, 206, 0.8)"),
