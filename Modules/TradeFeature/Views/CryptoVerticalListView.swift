@@ -11,22 +11,17 @@ import SwiftUI
 
 struct CryptoVerticalListView: View {
     @ObservedObject private var viewModel: CryptoListViewModel
-    private var onTap: (CoinCapAsset) -> Void
     
     public init(
-        _ viewModel: CryptoListViewModel,
-        onTap: @escaping (CoinCapAsset) -> Void
+        _ viewModel: CryptoListViewModel
     ) {
         self.viewModel = viewModel
-        self.onTap = onTap
     }
     
     var body: some View {
         LazyVStack {
             ForEach(viewModel.cryptos, id: \.id) { element in
-                Button {
-                    onTap(element)
-                } label: {
+                NavigationLink(value: element) {
                     cell(with: element)
                 }
             }

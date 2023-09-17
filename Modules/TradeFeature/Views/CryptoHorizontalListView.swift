@@ -10,23 +10,18 @@ import SwiftUI
 
 public struct CryptoHorizontalListView: View {
     @ObservedObject private var viewModel: CryptoListViewModel
-    private var onTap: (CoinCapAsset) -> Void
     
     public init(
-        _ viewModel: CryptoListViewModel,
-        onTap: @escaping (CoinCapAsset) -> Void
+        _ viewModel: CryptoListViewModel
     ) {
         self.viewModel = viewModel
-        self.onTap = onTap
     }
     
     public var body: some View {
         ScrollView(.horizontal, showsIndicators: false) {
             LazyHStack {
                 ForEach(viewModel.cryptos, id: \.id) { element in
-                    Button {
-                        onTap(element)
-                    } label: {
+                    NavigationLink(value: element) {
                         cell(with: element)
                     }
                 }
@@ -57,7 +52,7 @@ public struct CryptoHorizontalListView: View {
                     Text(element.symbol.uppercased())
                         .bold()
                         .foregroundColor(.white)
-                    Text("\(element.currentPrice.decimalDigits(2) ?? "0")")
+                    Text("\(element.currentPrice.decimalDigits(2))")
                         .font(.system(size: 12))
                         .foregroundColor(.gray)
                 }
@@ -69,7 +64,7 @@ public struct CryptoHorizontalListView: View {
                     .frame(width: 15, height: 15)
                     .foregroundColor(Color(uiColor: (element.priceChangePercentage24H > 0) ? .green : .red))
                 
-                Text("\(element.priceChangePercentage24H.decimalDigits(2) ?? "0") %")
+                Text("\(element.priceChangePercentage24H.decimalDigits(2)) %")
                     .font(.title3)
                     .foregroundColor(Color(uiColor: (element.priceChangePercentage24H > 0) ? .green : .red))
             }

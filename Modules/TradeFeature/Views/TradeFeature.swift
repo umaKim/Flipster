@@ -24,19 +24,16 @@ public struct TradeFeatureView: View {
             .background(Color(uiColor: .flipsterBlack))
             .onAppear(perform: viewModel.onAppear)
             .onDisappear(perform: viewModel.onDisappear)
-       
-        NavigationLink(
-            destination: AQXTradingDetailView(
-                .init(
-                    crypto: viewModel.selectedCrypto,
-                    repository: AQXTradingDetailRepositoryImp(
-                        networkManager: RESTApiManager()
+            .navigationDestination(for: CoinCapAsset.self) {
+                AQXTradingDetailView(
+                    .init(
+                        crypto: $0,
+                        repository: AQXTradingDetailRepositoryImp(
+                            networkManager: RESTApiManager()
+                        )
                     )
                 )
-            ),
-            when: $viewModel.nextState,
-            equals: .detailView
-        )
+            }
     }
     
     private var contentView: some View {
@@ -51,10 +48,6 @@ public struct TradeFeatureView: View {
                             axis: .vertical,
                             headerView: {
                                 usdtPerpetualHeaderTitleView
-                            },
-                            onTap: {
-                                viewModel.nextState = .detailView
-                                viewModel.selectedCrypto = $0
                             }
                         )
                     }
@@ -67,10 +60,6 @@ public struct TradeFeatureView: View {
                             axis: .horizontal,
                             headerView: {
                                 SectionHeaderView(sectionHeader: TopMoversHeaderInfo())
-                            },
-                            onTap: {
-                                viewModel.nextState = .detailView
-                                viewModel.selectedCrypto = $0
                             }
                         ).padding(.bottom)
                         
@@ -79,10 +68,6 @@ public struct TradeFeatureView: View {
                             axis: .horizontal,
                             headerView: {
                                 SectionHeaderView(sectionHeader: MostTradedHeaderInfo())
-                            },
-                            onTap: {
-                                viewModel.nextState = .detailView
-                                viewModel.selectedCrypto = $0
                             }
                         ).padding(.bottom)
                         
@@ -91,10 +76,6 @@ public struct TradeFeatureView: View {
                             axis: .vertical,
                             headerView: {
                                 SectionHeaderView(sectionHeader: AllSelectionHeaderInfo())
-                            },
-                            onTap: {
-                                viewModel.nextState = .detailView
-                                viewModel.selectedCrypto = $0
                             }
                         )
                     }
