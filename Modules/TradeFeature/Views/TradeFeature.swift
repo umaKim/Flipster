@@ -80,6 +80,8 @@ public struct TradeFeatureView: View {
                         )
                     }
                     .listStyle(.insetGrouped)
+                case .error(let message):
+                    Text(message)
                 }
             }
         }

@@ -12,6 +12,7 @@ import Foundation
 enum TradeViewStatus {
     case searching
     case normal
+    case error(String)
 }
 
 public enum TradeFeatureViewModelNextState: Hashable {
@@ -26,14 +27,18 @@ public final class TradeFeatureViewModel: ObservableObject {
     @Published private(set) var mostTraded: [CoinCapAsset] = []
     var filteredCryptos: [CoinCapAsset] {
         get {
-            if viewStatus == .searching {
+            switch viewStatus {
+            case .searching:
                 let lowercasedQuery = searchText.uppercased()
                 return allCryptos.lazy.filter({
                     $0.name.uppercased().contains(lowercasedQuery) ||
                     $0.symbol.uppercased().contains(lowercasedQuery)
                 })
-            } else {
+            case .normal:
                 return allCryptos
+                
+            case .error:
+                return []
             }
         }
     }

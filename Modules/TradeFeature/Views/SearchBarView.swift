@@ -63,6 +63,9 @@ struct SearchBar: View {
                 
             case .normal:
                 EmptyView()
+                
+            default:
+                EmptyView()
             }
         }
     }
