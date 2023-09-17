@@ -45,6 +45,8 @@ public final class TradeFeatureViewModel: ObservableObject {
         self.repository = repository
         self.cancellables = .init()
     }
+    
+    private let lock = NSLock()
 }
 
 // Life Cycle
@@ -99,7 +101,9 @@ extension TradeFeatureViewModel {
                 guard let self = self else { return }
                 receivedDatum
                     .forEach { data in
+                        self.lock.lock()
                         self.mapping(for: self.allCryptos, with: data) {
+                            defer { self.lock.unlock() }
                             self.allCryptos = $0
                         }
                     }
