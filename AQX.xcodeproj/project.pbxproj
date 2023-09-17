@@ -84,7 +84,6 @@
 		7AE3D2752A7900650041603F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7AE3D2742A7900650041603F /* Assets.xcassets */; };
 		7AE3D2782A7900650041603F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7AE3D2772A7900650041603F /* Preview Assets.xcassets */; };
 		7AEAE06D2A93282D0074EDD9 /* Double+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AEAE06C2A93282D0074EDD9 /* Double+Extension.swift */; };
-		7AF4B1BB2AB7639800C0D652 /* LightweightCharts in Frameworks */ = {isa = PBXBuildFile; productRef = 7AF4B1BA2AB7639800C0D652 /* LightweightCharts */; };
 		7AF4B1C32AB7682800C0D652 /* LightweightCharts in Frameworks */ = {isa = PBXBuildFile; productRef = 7AF4B1C22AB7682800C0D652 /* LightweightCharts */; };
 		7AF4B1C52AB7690D00C0D652 /* LightweightCharts in Frameworks */ = {isa = PBXBuildFile; productRef = 7AF4B1C42AB7690D00C0D652 /* LightweightCharts */; };
 		7AF57F5C2AB32B5C0081742F /* TradeRepositoryDataConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AF57F5B2AB32B5C0081742F /* TradeRepositoryDataConvertible.swift */; };
@@ -231,13 +230,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = 7A1051E72A926D1C007EF3DE;
 			remoteInfo = AQXTradeDetailFeature;
-		};
-		7A7FBBA02AB558DA00BC33F9 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 7AE3D2652A7900630041603F /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 7A667F612A96438600873922;
-			remoteInfo = TabFeature;
 		};
 		7A87BD942AA5F2CD0040020B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -522,7 +514,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7AF4B1BB2AB7639800C0D652 /* LightweightCharts in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1248,7 +1239,6 @@
 			);
 			name = TradeFeature;
 			packageProductDependencies = (
-				7AF4B1BA2AB7639800C0D652 /* LightweightCharts */,
 			);
 			productName = TradeFeature;
 			productReference = 7ACF7A842A92397300A08D8F /* TradeFeature.framework */;
@@ -1323,7 +1313,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				7A7FBBA12AB558DA00BC33F9 /* PBXTargetDependency */,
 			);
 			name = AQX;
 			packageProductDependencies = (
@@ -1863,11 +1852,6 @@
 			isa = PBXTargetDependency;
 			target = 7A1051E72A926D1C007EF3DE /* AQXTradeDetailFeature */;
 			targetProxy = 7A667FA72A96576D00873922 /* PBXContainerItemProxy */;
-		};
-		7A7FBBA12AB558DA00BC33F9 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 7A667F612A96438600873922 /* TabFeature */;
-			targetProxy = 7A7FBBA02AB558DA00BC33F9 /* PBXContainerItemProxy */;
 		};
 		7A87BD952AA5F2CD0040020B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -3122,10 +3106,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 7A667F332A963E7000873922 /* XCRemoteSwiftPackageReference "Starscream" */;
 			productName = Starscream;
-		};
-		7AF4B1BA2AB7639800C0D652 /* LightweightCharts */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = LightweightCharts;
 		};
 		7AF4B1C22AB7682800C0D652 /* LightweightCharts */ = {
 			isa = XCSwiftPackageProductDependency;
