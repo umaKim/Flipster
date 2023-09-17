@@ -85,7 +85,7 @@ extension TradeFeatureViewModel {
             switch result {
             case .success(let coins):
                 self.allCryptos = coins
-                self.setupWs()
+                self.setupWebSocket(with: coins)
                 
             case .failure(let error):
                 self.viewStatus = .error(error.localizedDescription)
@@ -109,9 +109,9 @@ extension TradeFeatureViewModel {
         }
     }
     
-    private func setupWs() {
+    private func setupWebSocket(with coins: [CoinCapAsset]) {
         repository.connect()
-        repository.set(symbols: allCryptos.map({$0.symbol.uppercased()}))
+        repository.set(symbols: coins.map({$0.symbol.uppercased()}))
         repository.dataPublisher
             .receive(on: DispatchQueue.global())
             .sink(receiveValue: {[weak self] receivedDatum in
