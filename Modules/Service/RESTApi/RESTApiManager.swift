@@ -17,7 +17,10 @@ public final actor RESTApiManager: RESTApiProtocol {
     
     public func request<T: Decodable>(url: URL) async -> Result<T, APIError> {
         do {
-            let (data, _) = try await URLSession.shared.data(from: url)
+            let (data, response) = try await URLSession.shared.data(from: url)
+            guard let response = response as? HTTPURLResponse else {return .failure(.noResponse)}
+            if response.statusCode == 429 { return .failure(.exceededTheRateLimit) }
+            
             if let result = try? JSONDecoder().decode(T.self, from: data) {
                 return .success(result)
             } else {
@@ -31,6 +34,8 @@ public final actor RESTApiManager: RESTApiProtocol {
 
 /// API Errors
 public enum APIError: Error {
+    case noResponse
     case noDataReturned
     case invalidUrl
+    case exceededTheRateLimit
 }
