@@ -417,6 +417,7 @@
 		7A9557192A8FE601006DF073 /* AQXTradingDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AQXTradingDetailViewModel.swift; sourceTree = "<group>"; };
 		7A95571D2A900037006DF073 /* View+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extension.swift"; sourceTree = "<group>"; };
 		7AA0DFB32A8BDECE0048F32A /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
+		7AAAF7CB2AB6E8B8003C1FED /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		7ABCDF722A966970009B8B76 /* LightweightCharts.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = LightweightCharts.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7ABE46E22A97249400F7237F /* SectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionHeaderView.swift; sourceTree = "<group>"; };
 		7ABE46E42A9724A900F7237F /* CryptoVerticalListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoVerticalListView.swift; sourceTree = "<group>"; };
@@ -905,6 +906,7 @@
 		7AE3D26F2A7900630041603F /* AQX */ = {
 			isa = PBXGroup;
 			children = (
+				7AAAF7CB2AB6E8B8003C1FED /* Info.plist */,
 				7AE3D2702A7900630041603F /* AQXApp.swift */,
 				7A56B2792AA0E517006D82F6 /* ContentView.swift */,
 				7AE3D2742A7900650041603F /* Assets.xcassets */,
@@ -3394,8 +3396,8 @@
 				DEVELOPMENT_TEAM = PHT5ZHW738;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = AQX/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Flipster;
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
@@ -3428,8 +3430,8 @@
 				DEVELOPMENT_TEAM = PHT5ZHW738;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = AQX/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Flipster;
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
