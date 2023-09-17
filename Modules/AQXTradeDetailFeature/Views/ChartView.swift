@@ -68,7 +68,7 @@ extension ChartView {
     private func setupChart() {
         let options = ChartOptions(
             layout: LayoutOptions(
-                backgroundColor: .init(.flipsterBlack),
+                background: .solid(color: .init(.flipsterGray)),
                 textColor: .init(.systemGray)
             ),
             rightPriceScale: VisiblePriceScaleOptions(borderColor: "rgba(197, 203, 206, 0.8)"),
