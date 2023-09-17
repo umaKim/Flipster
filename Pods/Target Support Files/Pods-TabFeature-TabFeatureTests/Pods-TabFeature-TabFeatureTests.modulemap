@@ -1,6 +1,0 @@
-framework module Pods_TabFeature_TabFeatureTests {
-  umbrella header "Pods-TabFeature-TabFeatureTests-umbrella.h"
-
-  export *
-  module * { export * }
-}

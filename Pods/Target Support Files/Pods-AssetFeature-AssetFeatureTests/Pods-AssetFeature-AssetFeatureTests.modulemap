@@ -1,6 +1,0 @@
-framework module Pods_AssetFeature_AssetFeatureTests {
-  umbrella header "Pods-AssetFeature-AssetFeatureTests-umbrella.h"
-
-  export *
-  module * { export * }
-}

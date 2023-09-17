@@ -1,6 +1,0 @@
-framework module Pods_AQXTradeDetailFeature_AQXTradeDetailFeatureTests {
-  umbrella header "Pods-AQXTradeDetailFeature-AQXTradeDetailFeatureTests-umbrella.h"
-
-  export *
-  module * { export * }
-}
