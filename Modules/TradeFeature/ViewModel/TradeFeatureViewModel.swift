@@ -18,6 +18,18 @@ enum TradeViewStatus {
 public final class TradeFeatureViewModel: ObservableObject {
     @Published var viewStatus: TradeViewStatus = .normal
     @Published var searchText: String = ""
+    var topMovers: [CoinCapAsset] {
+        return allCryptos
+            .sorted {
+            $0.priceChangePercentage24H > $1.priceChangePercentage24H
+        }
+    }
+    var mostTraded: [CoinCapAsset] {
+        return allCryptos
+            .sorted(by: {
+                $0.marketCapChangePercentage24H ?? 0 > $1.marketCapChangePercentage24H ?? 0
+            })
+    }
     var filteredCryptos: [CoinCapAsset] {
         get {
             switch viewStatus {
@@ -105,6 +117,7 @@ extension TradeFeatureViewModel {
                         self.mapping(for: self.allCryptos, with: data) {
                             defer { self.lock.unlock() }
                             self.allCryptos = $0
+                            self.objectWillChange.send()
                         }
                     }
             })
