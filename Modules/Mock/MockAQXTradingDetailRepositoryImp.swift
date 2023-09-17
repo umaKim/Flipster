@@ -10,14 +10,14 @@ import Foundation
 import AQXTradeDetailFeature
 
 public class MockAQXTradingDetailRepositoryImp: AQXTradingDetailRepository {
-    
+   
     private let networkManager: RESTApiProtocol
     
     public init(networkManager: RESTApiProtocol = MockRESTApiManager()) {
         self.networkManager = networkManager
     }
     
-    public func fetchChartData() async -> Result<Models.ChartData, Service.APIError> {
+    public func fetchChartData(of symbol: String) async -> Result<Models.ChartData, Service.APIError> {
         return .success(MockData.chartData)
     }
 }

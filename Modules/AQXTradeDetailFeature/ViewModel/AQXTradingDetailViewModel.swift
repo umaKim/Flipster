@@ -40,7 +40,8 @@ public final class AQXTradingDetailViewModel: ObservableObject {
     private func fetchChartData() {
         chartStatus = .loading("Loading...")
         Task {
-            let result = await repository.fetchChartData()
+            guard let symbol = crypto?.symbol else { return }
+            let result = await repository.fetchChartData(of: symbol)
             DispatchQueue.main.async {
                 switch result {
                 case .success(let chartData):
