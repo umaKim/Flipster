@@ -12,7 +12,7 @@ import Foundation
 
 public protocol TradeRepository: TradeRepositoryDataConvertible {
     // MARK: - REST API
-    func fetchCoins(url: URL) async -> Result<[CoinCapAsset], APIError>
+    func fetchCoins() async -> Result<[CoinCapAsset], APIError>
     
     //MARK: - SOCKET API
     var dataPublisher: AnyPublisher<[WebSocketDatum], Never> { get }
@@ -72,8 +72,19 @@ extension TradeRepositoryImp: WebSocketApiManagerDelegate {
 }
 
 //MARK: - REST API
-extension TradeRepositoryImp {
-    public func fetchCoins(url: URL) async -> Result<[Models.CoinCapAsset], Service.APIError> {
-        await networkManager.request(url: url)
+extension TradeRepositoryImp: UrlConfigurable {
+    public func fetchCoins() async -> Result<[Models.CoinCapAsset], Service.APIError> {
+        guard let url = url(
+            for: "https://api.coingecko.com/api/v3/coins/markets",
+            queryParams: [
+                "vs_currency":"inr",
+                "order":"market_cap_desc",
+                "per_page":"100",
+                "page": "1",
+                "sparkline":"true",
+                "price_change_percentage":"24h"
+            ]
+        ) else { return .failure(.invalidUrl) }
+        return await networkManager.request(url: url)
     }
 }

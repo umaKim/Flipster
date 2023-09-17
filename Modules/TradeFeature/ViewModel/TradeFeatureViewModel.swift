@@ -55,16 +55,15 @@ public final class TradeFeatureViewModel: ObservableObject {
     ) {
         self.repository = repository
         self.cancellables = .init()
-        fetchCoins()
     }
 }
 
 // Life Cycle
 extension TradeFeatureViewModel {
     func onAppear() {
-        selectedCrypto = nil
-        nextState = nil
-        repository.connect()
+        if allCryptos.isEmpty {
+            fetchCoins()
+        }
     }
     
     func onDisappear() {
@@ -75,9 +74,8 @@ extension TradeFeatureViewModel {
 // Private methods
 extension TradeFeatureViewModel {
     private func fetchCoins() {
-        guard let url = coinlistUrl else { return }
-        Task { @MainActor in
-            let result = await repository.fetchCoins(url: url)
+        Task {
+            let result = await repository.fetchCoins()
             switch result {
             case .success(let coins):
                 self.topMovers = coins.sorted(by: {$0.priceChangePercentage24H > $1.priceChangePercentage24H})
@@ -127,22 +125,5 @@ extension TradeFeatureViewModel {
                     }
             })
             .store(in: &cancellables)
-    }
-}
-
-// UrlConfigurable
-extension TradeFeatureViewModel: UrlConfigurable {
-    private var coinlistUrl: URL? {
-        url(
-            for: "https://api.coingecko.com/api/v3/coins/markets",
-            queryParams: [
-                "vs_currency":"inr",
-                "order":"market_cap_desc",
-                "per_page":"100",
-                "page": "1",
-                "sparkline":"true",
-                "price_change_percentage":"24h"
-            ]
-        )
     }
 }

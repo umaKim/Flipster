@@ -9,7 +9,7 @@ import Service
 import Foundation
 
 public protocol AQXTradingDetailRepository {
-    func fetchChartData(url: URL) async -> Result<Models.ChartData, APIError>
+    func fetchChartData() async -> Result<Models.ChartData, APIError>
 }
 
 public final class AQXTradingDetailRepositoryImp: AQXTradingDetailRepository {
@@ -20,7 +20,21 @@ public final class AQXTradingDetailRepositoryImp: AQXTradingDetailRepository {
         self.networkManager = networkManager
     }
     
-    public func fetchChartData(url: URL) async -> Result<Models.ChartData, Service.APIError> {
-        await networkManager.request(url: url)
+    public func fetchChartData() async -> Result<Models.ChartData, Service.APIError> {
+        guard let url = url(
+            for: "https://finnhub.io/api/v1" + "/crypto/candle",
+            queryParams: [
+                "symbol":"BINANCE:\("BTC")USDT",
+                "resolution":"D",
+                "from":"\(1572651390)",
+                "to":"\(Int(Date().timeIntervalSince1970))"
+            ],
+            with: [
+                "token": "c3c6me2ad3iefuuilms0"
+            ]
+        ) else { return .failure(.invalidUrl) }
+        return await networkManager.request(url: url)
     }
 }
+
+extension AQXTradingDetailRepositoryImp: UrlConfigurable { }

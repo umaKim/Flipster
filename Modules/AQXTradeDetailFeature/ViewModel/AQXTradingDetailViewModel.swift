@@ -44,11 +44,10 @@ public final class AQXTradingDetailViewModel: ObservableObject {
         self.cancellables = .init()
     }
     
-    public func fetchChartData() {
+    private func fetchChartData() {
         chartStatus = .loading("Loading...")
-        guard let url = coinChartDataUrl else { return }
         Task {
-            let result = await repository.fetchChartData(url: url)
+            let result = await repository.fetchChartData()
             DispatchQueue.main.async {
                 switch result {
                 case .success(let chartData):
@@ -66,23 +65,5 @@ public final class AQXTradingDetailViewModel: ObservableObject {
     
     public func onDisappear() {
         chartStatus = nil
-    }
-}
-
-extension AQXTradingDetailViewModel: UrlConfigurable {
-    private var coinChartDataUrl: URL? {
-        guard let crypto else { return nil }
-        return url(
-            for: "https://finnhub.io/api/v1" + "/crypto/candle",
-            queryParams: [
-                "symbol":"BINANCE:\(crypto.symbol.uppercased())USDT",
-                "resolution":"D",
-                "from":"\(1572651390)",
-                "to":"\(Int(Date().timeIntervalSince1970))"
-            ],
-            with: [
-                "token": "c3c6me2ad3iefuuilms0"
-            ]
-        )
     }
 }

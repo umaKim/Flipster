@@ -17,7 +17,7 @@ public class MockAQXTradingDetailRepositoryImp: AQXTradingDetailRepository {
         self.networkManager = networkManager
     }
     
-    public func fetchChartData(url: URL) async -> Result<Models.ChartData, Service.APIError> {
+    public func fetchChartData() async -> Result<Models.ChartData, Service.APIError> {
         return .success(MockData.chartData)
     }
 }
