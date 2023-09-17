@@ -65,7 +65,9 @@ public final class TradeFeatureViewModel: ObservableObject {
 extension TradeFeatureViewModel {
     func onAppear() {
         if allCryptos.isEmpty {
-            fetchCoins()
+            Task {
+                await fetchCoins()
+            }
         }
     }
     
@@ -76,6 +78,7 @@ extension TradeFeatureViewModel {
 
 // Private methods
 extension TradeFeatureViewModel {
+    @MainActor
     private func fetchCoins() {
         Task {
             let result = await repository.fetchCoins()
@@ -83,7 +86,9 @@ extension TradeFeatureViewModel {
             case .success(let coins):
                 self.allCryptos = coins
                 self.setupWs()
+                
             case .failure(let error):
+                self.viewStatus = .error(error.localizedDescription)
             }
         }
     }
