@@ -58,9 +58,9 @@ struct CryptoVerticalListView: View {
             Spacer()
             
             VStack(alignment: .trailing) {
-                Text("\(element.currentPrice.decimalDigits(2) ?? "0")")
+                Text(element.currentPrice.decimalDigits(2))
                     .foregroundColor(.white)
-                Text("\(element.priceChangePercentage24H.decimalDigits(2) ?? "0") %")
+                Text("\(element.priceChangePercentage24H.decimalDigits(2)) %")
                     .foregroundColor(Color(uiColor: (element.priceChangePercentage24H > 0) ? .green : .red))
             }
         }
