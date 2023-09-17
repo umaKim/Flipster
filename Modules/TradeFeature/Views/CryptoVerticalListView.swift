@@ -23,15 +23,11 @@ struct CryptoVerticalListView: View {
     
     var body: some View {
         LazyVStack {
-            ForEach(
-                viewModel.cryptos,
-                id: \.id
-            ) { element in
+            ForEach(viewModel.cryptos, id: \.id) { element in
                 Button {
                     onTap(element)
                 } label: {
                     cell(with: element)
-                        .padding(.vertical, 2)
                 }
             }
         }
@@ -48,13 +44,13 @@ struct CryptoVerticalListView: View {
                             .resizable()
                             .frame(width: 30, height: 30)
                             .cornerRadius(15)
-                    
+                        
                     default:
                         Image(systemName: "exclamationmark.circle")
                     }
                 }
             )
-           
+            
             VStack(alignment: .leading) {
                 Text(element.symbol.uppercased())
                     .font(.headline)
@@ -63,9 +59,9 @@ struct CryptoVerticalListView: View {
                     .font(.subheadline)
                     .foregroundColor(.gray)
             }
-
+            
             Spacer()
-
+            
             VStack(alignment: .trailing) {
                 Text("\(element.currentPrice.decimalDigits(2) ?? "0")")
                     .foregroundColor(.white)
@@ -76,5 +72,6 @@ struct CryptoVerticalListView: View {
         .padding(.horizontal, 12)
         .background(Color(uiColor: .flipsterGray))
         .cornerRadius(6)
+        .padding(.vertical, 2)
     }
 }
