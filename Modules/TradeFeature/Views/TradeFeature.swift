@@ -12,10 +12,10 @@ import SwiftUI
 import Utils
 
 public struct TradeFeatureView: View {
-    @ObservedObject private var viewModel: TradeFeatureViewModel
+    @StateObject private var viewModel: TradeFeatureViewModel
     
     public init(_ viewModel: TradeFeatureViewModel) {
-        self.viewModel = viewModel
+        _viewModel = StateObject(wrappedValue: viewModel)
     }
    
     public var body: some View {
