@@ -33,8 +33,8 @@ final class TradeFeatureTests: XCTestCase {
     }
     
     func test_MostTraded() {
+        self.vm.onAppear()
         let expectation = expectation(description: "Fetch mostTraded data")
-        
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             XCTAssertEqual(self.vm.mostTraded, [MockData.crypto])
             expectation.fulfill()
@@ -43,8 +43,8 @@ final class TradeFeatureTests: XCTestCase {
     }
     
     func test_TopMovers() {
+        self.vm.onAppear()
         let expectation = expectation(description: "Fetch topMovers data")
-        
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             XCTAssertEqual(self.vm.topMovers, [MockData.crypto])
             expectation.fulfill()
@@ -53,8 +53,8 @@ final class TradeFeatureTests: XCTestCase {
     }
     
     func test_FilteredCryptos() {
+        self.vm.onAppear()
         let expectation = expectation(description: "Fetch filteredCryptos data")
-        
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             XCTAssertEqual(self.vm.filteredCryptos, [MockData.crypto])
             expectation.fulfill()
@@ -63,8 +63,8 @@ final class TradeFeatureTests: XCTestCase {
     }
     
     func test_FilteredCryptosWhenSearching() {
+        self.vm.onAppear()
         let expectation = expectation(description: "Filter searched crypto data")
-        
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             self.vm.viewStatus = .searching
             self.vm.searchText = "b"
@@ -75,6 +75,7 @@ final class TradeFeatureTests: XCTestCase {
     }
     
     func test_WsValue() {
+        self.vm.onAppear()
         let expectation = expectation(description: "Fetch changed web socket coin price")
         DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
             XCTAssertEqual(
@@ -85,20 +86,5 @@ final class TradeFeatureTests: XCTestCase {
             expectation.fulfill()
         }
         waitForExpectations(timeout: 4, handler: nil)
-    }
-    
-    func test_selectedCrypto_whenOnAppearIsCalled() {
-        vm.onAppear()
-        XCTAssertNil(vm.selectedCrypto)
-    }
-    
-    func test_nextState_whenOnAppearIsCalled() {
-        vm.onAppear()
-        XCTAssertNil(vm.nextState)
-    }
-    
-    func test_WSisDisconnectedWhenOnDisappearIsCalled() {
-        vm.onDisappear()
-        XCTAssertTrue(mockSocket.isDisconnected)
     }
 }

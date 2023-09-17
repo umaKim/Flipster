@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct ChartData: Codable {
+public struct ChartData: Codable, Equatable {
     public let closePrice: [Double]    // close price
     public let highPrice: [Double]     // high price
     public let lowPrice: [Double]      // low price

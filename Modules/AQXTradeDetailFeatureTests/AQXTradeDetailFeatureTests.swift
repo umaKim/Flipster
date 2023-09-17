@@ -34,9 +34,16 @@ final class AQXTradingDetailViewModelTests: XCTestCase {
     
     func test_FetchChartData() {
         let expectation = expectation(description: "Fetch chart data")
-        viewModel.fetchChartData()
+        viewModel.onAppear()
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            XCTAssertNotNil(self.viewModel.chartData)
+            XCTAssertNotNil(self.viewModel.chartStatus)
+            
+            switch self.viewModel.chartStatus {
+            case .data(let data):
+                XCTAssertEqual(data, MockData.chartData)
+            default:
+                XCTAssertEqual(nil, MockData.chartData)
+            }
             expectation.fulfill()
         }
         waitForExpectations(timeout: 5, handler: nil)
@@ -44,7 +51,7 @@ final class AQXTradingDetailViewModelTests: XCTestCase {
 
     func test_OnDisappear() {
         viewModel.onDisappear()
-        XCTAssertNil(viewModel.chartData)
+        XCTAssertNil(viewModel.chartStatus)
     }
 }
 
