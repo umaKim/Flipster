@@ -15,16 +15,9 @@ enum TradeViewStatus {
     case error(String)
 }
 
-public enum TradeFeatureViewModelNextState: Hashable {
-    case detailView
-}
-
 public final class TradeFeatureViewModel: ObservableObject {
-    @Published var nextState: TradeFeatureViewModelNextState?
     @Published var viewStatus: TradeViewStatus = .normal
     @Published var searchText: String = ""
-    @Published private(set) var topMovers: [CoinCapAsset] = []
-    @Published private(set) var mostTraded: [CoinCapAsset] = []
     var filteredCryptos: [CoinCapAsset] {
         get {
             switch viewStatus {
@@ -42,12 +35,8 @@ public final class TradeFeatureViewModel: ObservableObject {
             }
         }
     }
-    
     private var allCryptos: [CoinCapAsset] = []
-    public var selectedCrypto: CoinCapAsset?
-    
     private let repository: TradeRepository
-    
     private var cancellables: Set<AnyCancellable>
     
     public init(
@@ -67,7 +56,7 @@ extension TradeFeatureViewModel {
     }
     
     func onDisappear() {
-        repository.disconnect()
+        
     }
 }
 
@@ -78,12 +67,9 @@ extension TradeFeatureViewModel {
             let result = await repository.fetchCoins()
             switch result {
             case .success(let coins):
-                self.topMovers = coins.sorted(by: {$0.priceChangePercentage24H > $1.priceChangePercentage24H})
-                self.mostTraded = coins.sorted(by: {$0.marketCapChangePercentage24H ?? 0 > $1.marketCapChangePercentage24H ?? 0})
                 self.allCryptos = coins
                 self.setupWs()
             case .failure(let error):
-                print(error.localizedDescription)
             }
         }
     }
@@ -113,12 +99,6 @@ extension TradeFeatureViewModel {
                 guard let self = self else { return }
                 receivedDatum
                     .forEach { data in
-                        self.mapping(for: self.topMovers, with: data) {
-                            self.topMovers = $0
-                        }
-                        self.mapping(for: self.mostTraded, with: data) {
-                            self.mostTraded = $0
-                        }
                         self.mapping(for: self.allCryptos, with: data) {
                             self.allCryptos = $0
                         }

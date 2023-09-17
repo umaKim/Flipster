@@ -17,22 +17,15 @@ public enum ChartStatus {
 }
 
 public final class AQXTradingDetailViewModel: ObservableObject {
-    
     public var crypto: CoinCapAsset?
     @Published public var chartStatus: ChartStatus? = nil
     @Published public var priceInput: String = ""
     @Published public var chartViewStatus: AQXTradingDetailChartStatus = .show
     @Published public var tradingType: AQXTradingDetailViewTradingType = .long
     @Published public var selectedLeverageType: LeverageType = .none
-    
-    public var reviewYourOrderButtonDisabled: Bool {
-        return priceInput.isEmpty
-    }
-    
+    public var reviewYourOrderButtonDisabled: Bool { priceInput.isEmpty }
     private(set) var leverageTypes: [LeverageType] = [.twentyFive, .fifty, .seventyFive, .hundered]
-    
     private let repository: AQXTradingDetailRepository
-    
     private var cancellables: Set<AnyCancellable>
     
     public init(
