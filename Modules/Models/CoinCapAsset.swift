@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct CoinCapAsset: Codable, Identifiable, Equatable {
+public struct CoinCapAsset: Codable, Identifiable, Equatable, Hashable {
     public static func == (lhs: CoinCapAsset, rhs: CoinCapAsset) -> Bool {
         lhs.id == rhs.id
     }
