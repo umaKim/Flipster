@@ -25,7 +25,7 @@ public final class TradeFeatureViewModel: ObservableObject {
     }
     var mostTraded: [CoinCapAsset] {
         return allCryptos.lazy
-            .sorted(by: { $0.marketCapChangePercentage24H ?? 0 > $1.marketCapChangePercentage24H ?? 0 })
+            .sorted(by: { $0.marketCapChange24H ?? 0 > $1.marketCapChange24H ?? 0 })
     }
     var filteredCryptos: [CoinCapAsset] {
         get {
