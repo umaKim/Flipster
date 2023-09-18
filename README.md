@@ -6,8 +6,9 @@ SwifUI based project cloning Flipster powered by Presto Labs
 - SwiftUI
 - Modularization
 - WebSocket
+- Swift Concurrency
 - Combine
-- Kingfisher (Image Caching)
+- Image Caching
 
 ## **📱 Features Developed (iOS)**
 - Implemented real-time price fluctuations using WebSocket.
