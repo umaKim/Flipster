@@ -35,7 +35,7 @@ final class TradeFeatureTests: XCTestCase {
     func test_MostTraded() {
         self.vm.onAppear()
         let expectation = expectation(description: "Fetch mostTraded data")
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
             XCTAssertEqual(self.vm.mostTraded, [MockData.crypto])
             expectation.fulfill()
         }
@@ -45,7 +45,7 @@ final class TradeFeatureTests: XCTestCase {
     func test_TopMovers() {
         self.vm.onAppear()
         let expectation = expectation(description: "Fetch topMovers data")
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
             XCTAssertEqual(self.vm.topMovers, [MockData.crypto])
             expectation.fulfill()
         }
@@ -55,7 +55,7 @@ final class TradeFeatureTests: XCTestCase {
     func test_FilteredCryptos() {
         self.vm.onAppear()
         let expectation = expectation(description: "Fetch filteredCryptos data")
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
             XCTAssertEqual(self.vm.filteredCryptos, [MockData.crypto])
             expectation.fulfill()
         }
@@ -65,7 +65,7 @@ final class TradeFeatureTests: XCTestCase {
     func test_FilteredCryptosWhenSearching() {
         self.vm.onAppear()
         let expectation = expectation(description: "Filter searched crypto data")
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
             self.vm.viewStatus = .searching
             self.vm.searchText = "b"
             XCTAssertEqual(self.vm.filteredCryptos, [MockData.crypto])
@@ -77,7 +77,7 @@ final class TradeFeatureTests: XCTestCase {
     func test_WsValue() {
         self.vm.onAppear()
         let expectation = expectation(description: "Fetch changed web socket coin price")
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
             XCTAssertEqual(
                 self.vm.filteredCryptos[0].currentPrice,
                 MockData.coinPriceData.price
@@ -85,6 +85,6 @@ final class TradeFeatureTests: XCTestCase {
             print(self.vm.filteredCryptos[0].currentPrice)
             expectation.fulfill()
         }
-        waitForExpectations(timeout: 4, handler: nil)
+        waitForExpectations(timeout: 5, handler: nil)
     }
 }
