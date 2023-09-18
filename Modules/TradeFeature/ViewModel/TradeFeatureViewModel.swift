@@ -16,19 +16,16 @@ enum TradeViewStatus {
 }
 
 public final class TradeFeatureViewModel: ObservableObject {
+    private let cryptoDataActor = CryptoDataActor()
     @Published var viewStatus: TradeViewStatus = .normal
     @Published var searchText: String = ""
     var topMovers: [CoinCapAsset] {
-        return allCryptos
-            .sorted {
-            $0.priceChangePercentage24H > $1.priceChangePercentage24H
-        }
+        return allCryptos.lazy
+            .sorted { $0.priceChangePercentage24H > $1.priceChangePercentage24H }
     }
     var mostTraded: [CoinCapAsset] {
-        return allCryptos
-            .sorted(by: {
-                $0.marketCapChangePercentage24H ?? 0 > $1.marketCapChangePercentage24H ?? 0
-            })
+        return allCryptos.lazy
+            .sorted(by: { $0.marketCapChangePercentage24H ?? 0 > $1.marketCapChangePercentage24H ?? 0 })
     }
     var filteredCryptos: [CoinCapAsset] {
         get {
@@ -47,7 +44,7 @@ public final class TradeFeatureViewModel: ObservableObject {
             }
         }
     }
-    private var allCryptos: [CoinCapAsset] = []
+    @Published private var allCryptos: [CoinCapAsset] = []
     private let repository: TradeRepository
     private var cancellables: Set<AnyCancellable>
     
@@ -57,17 +54,13 @@ public final class TradeFeatureViewModel: ObservableObject {
         self.repository = repository
         self.cancellables = .init()
     }
-    
-    private let lock = NSLock()
 }
 
 // Life Cycle
 extension TradeFeatureViewModel {
     func onAppear() {
         if allCryptos.isEmpty {
-            Task {
-                await fetchCoins()
-            }
+            fetchCoins()
         }
     }
     
@@ -78,33 +71,16 @@ extension TradeFeatureViewModel {
 
 // Private methods
 extension TradeFeatureViewModel {
-    @MainActor
     private func fetchCoins() {
         Task {
             let result = await repository.fetchCoins()
             switch result {
             case .success(let coins):
-                self.allCryptos = coins
+                await self.cryptoDataActor.updateCryptos(coins)
                 self.setupWebSocket(with: coins)
                 
             case .failure(let error):
                 self.viewStatus = .error(error.localizedDescription)
-            }
-        }
-    }
-    
-    private func mapping(for cryptos: [CoinCapAsset], with data: WebSocketDatum, completion: @escaping ([CoinCapAsset]) -> Void) {
-        var cryptos = cryptos
-        if cryptos.lazy.contains(where:{"BINANCE:\($0.symbol.uppercased())USDT" == data.symbol}) {
-            for (index, model) in cryptos.enumerated() {
-                if "BINANCE:\(model.symbol.uppercased())USDT" == data.symbol {
-                    DispatchQueue.main.async {
-                        var temp = model
-                        temp.currentPrice = data.price
-                        cryptos[index] = temp
-                        completion(cryptos)
-                    }
-                }
             }
         }
     }
@@ -116,16 +92,18 @@ extension TradeFeatureViewModel {
             .receive(on: DispatchQueue.global())
             .sink(receiveValue: {[weak self] receivedDatum in
                 guard let self = self else { return }
-                receivedDatum
-                    .forEach { data in
-                        self.lock.lock()
-                        self.mapping(for: self.allCryptos, with: data) {
-                            defer { self.lock.unlock() }
-                            self.allCryptos = $0
-                            self.objectWillChange.send()
-                        }
-                    }
+                self.mapCoinData(receivedDatum: receivedDatum)
             })
             .store(in: &cancellables)
+    }
+    
+    private func mapCoinData(receivedDatum: [WebSocketDatum]) {
+        receivedDatum.forEach {[weak self] data in
+            guard let self = self else { return }
+            Task { @MainActor in
+                await cryptoDataActor.modifyCrypto(with: data)
+                self.allCryptos = await cryptoDataActor.getUpdatedCryptos()
+            }
+        }
     }
 }
