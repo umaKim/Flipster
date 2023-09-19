@@ -846,10 +846,10 @@
 		7AE3D26F2A7900630041603F /* AQX */ = {
 			isa = PBXGroup;
 			children = (
-				7AAAF7CB2AB6E8B8003C1FED /* Info.plist */,
 				7AE3D2702A7900630041603F /* AQXApp.swift */,
 				7A56B2792AA0E517006D82F6 /* ContentView.swift */,
 				7AE3D2742A7900650041603F /* Assets.xcassets */,
+				7AAAF7CB2AB6E8B8003C1FED /* Info.plist */,
 				7AE3D2762A7900650041603F /* Preview Content */,
 			);
 			path = AQX;
@@ -874,8 +874,6 @@
 		7AFD7F1C2A982A9A00E9B705 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
-				7A87BD8A2AA5F2CC0040020B /* SwiftUIImageCachKit */,
-				7A87BD982AA5F2CD0040020B /* SwiftUIImageCachKitTests */,
 				7A667F632A96438600873922 /* TabFeature */,
 				7A667F712A96438700873922 /* TabFeatureTests */,
 				7ACF7A852A92397300A08D8F /* TradeFeature */,
@@ -884,6 +882,8 @@
 				7ACF7AB52A92397E00A08D8F /* AssetFeatureTests */,
 				7A1051E92A926D1C007EF3DE /* AQXTradeDetailFeature */,
 				7A1051F72A926D1C007EF3DE /* AQXTradeDetailFeatureTests */,
+				7A87BD8A2AA5F2CC0040020B /* SwiftUIImageCachKit */,
+				7A87BD982AA5F2CD0040020B /* SwiftUIImageCachKitTests */,
 				7ACF7A5F2A92394600A08D8F /* Utils */,
 				7ACF7A6D2A92394600A08D8F /* UtilsTests */,
 				7A667EFC2A96367F00873922 /* Service */,
