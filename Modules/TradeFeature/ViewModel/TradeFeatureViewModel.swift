@@ -8,6 +8,7 @@ import Models
 import Service
 import Combine
 import Foundation
+import SwiftUI
 
 enum TradeViewStatus {
     case searching
@@ -45,6 +46,7 @@ public final class TradeFeatureViewModel: ObservableObject {
         }
     }
     @Published private var allCryptos: [CoinCapAsset] = []
+    
     private let repository: TradeRepository
     private var cancellables: Set<AnyCancellable>
     
@@ -101,8 +103,8 @@ extension TradeFeatureViewModel {
         receivedDatum.forEach {[weak self] data in
             guard let self = self else { return }
             Task { @MainActor in
-                await cryptoDataActor.modifyCrypto(with: data)
-                self.allCryptos = await cryptoDataActor.getUpdatedCryptos()
+                await self.cryptoDataActor.modifyCrypto(with: data)
+                self.allCryptos = await self.cryptoDataActor.getUpdatedCryptos()
             }
         }
     }

@@ -15,12 +15,14 @@ actor CryptoDataActor {
         cryptos = newCryptos
     }
 
-    func modifyCrypto(with data: WebSocketDatum) {
-        if cryptos.lazy.contains(where:{"BINANCE:\($0.symbol.uppercased())USDT" == data.symbol}) {
-            for (index, model) in cryptos.enumerated() {
-                if "BINANCE:\(model.symbol.uppercased())USDT" == data.symbol {
-                    var temp = model
-                    temp.currentPrice = data.price
+    func modifyCrypto(with newData: WebSocketDatum) {
+        if cryptos.lazy.contains(where:{"BINANCE:\($0.symbol.uppercased())USDT" == newData.symbol}) {
+            for (index, oldData) in cryptos.enumerated() {
+                if oldData.currentPrice == newData.price { return }
+                if "BINANCE:\(oldData.symbol.uppercased())USDT" == newData.symbol {
+                    var temp = oldData
+                    temp.priceDifference = oldData.currentPrice < newData.price ? .increase : .decrease
+                    temp.currentPrice = newData.price
                     cryptos[index] = temp
                 }
             }

@@ -58,8 +58,17 @@ struct CryptoVerticalListView: View {
             Spacer()
             
             VStack(alignment: .trailing) {
-                Text(element.currentPrice.decimalDigits(2))
-                    .foregroundColor(.white)
+                ZStack {
+                    Text(element.currentPrice.decimalDigits(2))
+                        .foregroundColor(.white)
+                }
+                .phaseAnimator(BlinkPhase.allCases, trigger: element.priceDifference) { content, phase in
+                    content
+                        .background(element.priceDifference == .increase ? phase.increaseColor : phase.decreaseColor)
+                } animation: { phase in
+                        .easeInOut(duration: 0.2)
+                }
+
                 Text("\(element.priceChangePercentage24H.decimalDigits(2)) %")
                     .foregroundColor(Color(uiColor: (element.priceChangePercentage24H > 0) ? .green : .red))
             }
@@ -68,5 +77,28 @@ struct CryptoVerticalListView: View {
         .background(Color(uiColor: .flipsterGray))
         .cornerRadius(6)
         .padding(.vertical, 2)
+    }
+    
+    enum BlinkPhase: CaseIterable {
+        case normal
+        case change
+        
+        var increaseColor: Color {
+            switch self {
+            case .normal:
+                return .clear
+            case .change:
+                return .green
+            }
+        }
+        
+        var decreaseColor: Color {
+            switch self {
+            case .normal:
+                return .clear
+            case .change:
+                return .red
+            }
+        }
     }
 }

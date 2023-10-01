@@ -7,6 +7,12 @@
 
 import Foundation
 
+public enum PriceChangeType {
+    case increase
+    case decrease
+    
+}
+
 public struct CoinCapAsset: Codable, Identifiable, Equatable, Hashable {
     public static func == (lhs: CoinCapAsset, rhs: CoinCapAsset) -> Bool {
         lhs.id == rhs.id
@@ -28,6 +34,8 @@ public struct CoinCapAsset: Codable, Identifiable, Equatable, Hashable {
     public let atlDate: String?
     public let lastUpdated: String?
     public let priceChangePercentage24HInCurrency: Double?
+    
+    public var priceDifference: PriceChangeType? = nil
     
     public enum CodingKeys: String, CodingKey {
         case id, symbol, name, image
