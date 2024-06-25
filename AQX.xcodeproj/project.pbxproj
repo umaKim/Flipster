@@ -3,10 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 60;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		351ADB812C2B03D4006B7247 /* LightweightCharts in Frameworks */ = {isa = PBXBuildFile; productRef = 351ADB802C2B03D4006B7247 /* LightweightCharts */; };
 		7A1051EC2A926D1C007EF3DE /* AQXTradeDetailFeature.docc in Sources */ = {isa = PBXBuildFile; fileRef = 7A1051EB2A926D1C007EF3DE /* AQXTradeDetailFeature.docc */; };
 		7A1051F22A926D1C007EF3DE /* AQXTradeDetailFeature.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A1051E82A926D1C007EF3DE /* AQXTradeDetailFeature.framework */; };
 		7A1051F92A926D1C007EF3DE /* AQXTradeDetailFeatureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A1051F82A926D1C007EF3DE /* AQXTradeDetailFeatureTests.swift */; };
@@ -84,8 +85,6 @@
 		7AE3D2752A7900650041603F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7AE3D2742A7900650041603F /* Assets.xcassets */; };
 		7AE3D2782A7900650041603F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7AE3D2772A7900650041603F /* Preview Assets.xcassets */; };
 		7AEAE06D2A93282D0074EDD9 /* Double+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AEAE06C2A93282D0074EDD9 /* Double+Extension.swift */; };
-		7AF4B1C32AB7682800C0D652 /* LightweightCharts in Frameworks */ = {isa = PBXBuildFile; productRef = 7AF4B1C22AB7682800C0D652 /* LightweightCharts */; };
-		7AF4B1C52AB7690D00C0D652 /* LightweightCharts in Frameworks */ = {isa = PBXBuildFile; productRef = 7AF4B1C42AB7690D00C0D652 /* LightweightCharts */; };
 		7AF4B1D02AB76E5900C0D652 /* Utils.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7ACF7A5E2A92394600A08D8F /* Utils.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		7AF4B1D12AB76E5A00C0D652 /* TradeFeature.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7ACF7A842A92397300A08D8F /* TradeFeature.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		7AF4B1D22AB76E5A00C0D652 /* AssetFeature.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7ACF7AA62A92397E00A08D8F /* AssetFeature.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -433,7 +432,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7AF4B1C32AB7682800C0D652 /* LightweightCharts in Frameworks */,
+				351ADB812C2B03D4006B7247 /* LightweightCharts in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -562,7 +561,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7AF4B1C52AB7690D00C0D652 /* LightweightCharts in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1001,7 +999,7 @@
 			);
 			name = AQXTradeDetailFeature;
 			packageProductDependencies = (
-				7AF4B1C22AB7682800C0D652 /* LightweightCharts */,
+				351ADB802C2B03D4006B7247 /* LightweightCharts */,
 			);
 			productName = AQXTradeDetailFeature;
 			productReference = 7A1051E82A926D1C007EF3DE /* AQXTradeDetailFeature.framework */;
@@ -1335,7 +1333,6 @@
 			);
 			name = AQX;
 			packageProductDependencies = (
-				7AF4B1C42AB7690D00C0D652 /* LightweightCharts */,
 			);
 			productName = AQX;
 			productReference = 7AE3D26D2A7900630041603F /* AQX.app */;
@@ -1426,6 +1423,7 @@
 			mainGroup = 7AE3D2642A7900630041603F;
 			packageReferences = (
 				7A667F332A963E7000873922 /* XCRemoteSwiftPackageReference "Starscream" */,
+				351ADB7F2C2B0363006B7247 /* XCLocalSwiftPackageReference "LightweightChartsIOS-master" */,
 			);
 			productRefGroup = 7AE3D26E2A7900630041603F /* Products */;
 			projectDirPath = "";
@@ -2882,9 +2880,11 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AQX/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Flipster;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2915,9 +2915,11 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AQX/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Flipster;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -3110,6 +3112,13 @@
 		};
 /* End XCConfigurationList section */
 
+/* Begin XCLocalSwiftPackageReference section */
+		351ADB7F2C2B0363006B7247 /* XCLocalSwiftPackageReference "LightweightChartsIOS-master" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = "LightweightChartsIOS-master";
+		};
+/* End XCLocalSwiftPackageReference section */
+
 /* Begin XCRemoteSwiftPackageReference section */
 		7A667F332A963E7000873922 /* XCRemoteSwiftPackageReference "Starscream" */ = {
 			isa = XCRemoteSwiftPackageReference;
@@ -3122,18 +3131,15 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		351ADB802C2B03D4006B7247 /* LightweightCharts */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 351ADB7F2C2B0363006B7247 /* XCLocalSwiftPackageReference "LightweightChartsIOS-master" */;
+			productName = LightweightCharts;
+		};
 		7A667F342A963E7000873922 /* Starscream */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 7A667F332A963E7000873922 /* XCRemoteSwiftPackageReference "Starscream" */;
 			productName = Starscream;
-		};
-		7AF4B1C22AB7682800C0D652 /* LightweightCharts */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = LightweightCharts;
-		};
-		7AF4B1C42AB7690D00C0D652 /* LightweightCharts */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = LightweightCharts;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
